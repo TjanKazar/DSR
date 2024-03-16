@@ -7,7 +7,7 @@
 <p>Nakup : </p>
 @if(ViewBag.Racun.nakup.Count != 0)
 {
-    @foreach (Slika s in ViewBag.Racun.nakup)
+    @foreach (SlikaModel s in ViewBag.Racun.nakup)
     {
         <p>@s.ime</p>
     }

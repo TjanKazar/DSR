@@ -1,6 +1,6 @@
-﻿namespace DSR_KAZAR_N1
+﻿namespace DSR_KAZAR_N1.Models
 {
-    public class Slika
+    public class SlikaModel
     {
         public int id { get; set; }
         public string ime { get; set; }
@@ -8,14 +8,14 @@
         public int letoIzdaje { get; set; }
         public bool jeUnikat { get; set; }
         public Racun racun { get; set; }
-        public Slika(int id, string ime, decimal cena, int letoIzdaje, bool jeUnikat)
+        public SlikaModel(int id, string ime, decimal cena, int letoIzdaje, bool jeUnikat)
         {
             this.ime = ime;
             this.cena = cena;
             this.letoIzdaje = letoIzdaje;
             this.jeUnikat = jeUnikat;
         }
-        public Slika( string ime, decimal cena, int letoIzdaje, bool jeUnikat, Racun racun)
+        public SlikaModel(string ime, decimal cena, int letoIzdaje, bool jeUnikat, Racun racun)
         {
             this.ime = ime;
             this.cena = cena;

@@ -1,6 +1,6 @@
-﻿namespace DSR_KAZAR_N1
+﻿namespace DSR_KAZAR_N1.Models
 {
-    public class Uporabnik
+    public class UporabnikModel
     {
         public string ime { get; set; }
         public string priimek { get; set; }
@@ -8,7 +8,7 @@
         public string kontakt { get; set; }
         public List<Racun> racuni { get; set; }
 
-        public Uporabnik(string ime, string priimek, DateTime datumRojstva, string kontakt, List<Racun> racuni)
+        public UporabnikModel(string ime, string priimek, DateTime datumRojstva, string kontakt, List<Racun> racuni)
         {
             this.ime = ime;
             this.priimek = priimek;

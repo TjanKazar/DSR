@@ -19,7 +19,7 @@ namespace DSR_KAZAR_N1.Controllers
         }
         public IActionResult Slike()
         {
-            Slika slika = new(0, "Drawing", 99.99m, 2001, true);
+            SlikaModel slika = new(0, "Drawing", 99.99m, 2001, true);
             ViewBag.Slika = slika;
             return View();
         }
@@ -28,14 +28,14 @@ namespace DSR_KAZAR_N1.Controllers
         {
             DateTime dateTime = new DateTime(2001, 12, 31);
                 List < Racun > racuni = new();
-            Uporabnik uporabnik = new("Janez", "Novak", dateTime, "janez.novak@test.com", racuni);
+            UporabnikModel uporabnik = new("Janez", "Novak", dateTime, "janez.novak@test.com", racuni);
             ViewBag.Uporabnik = uporabnik;
             return View();
         }
         public IActionResult Racuni()
         {
             DateTime datumIzdaje = new DateTime(2024, 3, 14); 
-            List<Slika> nakupList = new List<Slika>(); 
+            List<SlikaModel> nakupList = new List<SlikaModel>(); 
             decimal cenaSkupaj = 100.50m; 
 
             Racun racun = new Racun(datumIzdaje, nakupList, cenaSkupaj);
