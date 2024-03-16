@@ -17,31 +17,6 @@ namespace DSR_KAZAR_N1.Controllers
         {
             return View();
         }
-        public IActionResult Slike()
-        {
-            SlikaModel slika = new(0, "Drawing", 99.99m, 2001, true);
-            ViewBag.Slika = slika;
-            return View();
-        }
-
-        public IActionResult Uporabniki()
-        {
-            DateTime dateTime = new DateTime(2001, 12, 31);
-                List < Racun > racuni = new();
-            UporabnikModel uporabnik = new("Janez", "Novak", dateTime, "janez.novak@test.com", racuni);
-            ViewBag.Uporabnik = uporabnik;
-            return View();
-        }
-        public IActionResult Racuni()
-        {
-            DateTime datumIzdaje = new DateTime(2024, 3, 14); 
-            List<SlikaModel> nakupList = new List<SlikaModel>(); 
-            decimal cenaSkupaj = 100.50m; 
-
-            Racun racun = new Racun(datumIzdaje, nakupList, cenaSkupaj);
-            ViewBag.Racun = racun;
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
