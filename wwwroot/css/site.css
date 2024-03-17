@@ -30,3 +30,38 @@ body {
     width: 30rem; 
     align-content: baseline;
 }
+#reg{
+    justify-content: right;
+}
+
+.slider-container {
+    width: 50%; 
+    margin: 0 auto; 
+    position: relative;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: 25px; 
+}
+
+.labels span {
+   font-size: 12px; 
+}
+
+.ocenaLable {
+    position: absolute;
+    left: 33%;
+    transform: translateY(-90%);
+}
+.align-content-center {
+    width: 50%; 
+    margin: 0 auto;
+    right: 25%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
