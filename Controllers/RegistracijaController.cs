@@ -56,9 +56,19 @@ namespace DSR_KAZAR_N1.Controllers
             TempData["pass1"] = pass1;
             TempData["pass2"] = pass2;
             TempData.Keep();
-            UporabnikModel novUporabnik = new((string)TempData.Peek("name"), (string)TempData.Peek("surname"), (DateTime)TempData.Peek("birthdate"), (string)TempData.Peek("emso"), (string)TempData.Peek("address"), (string)TempData.Peek("email"), (string)TempData.Peek("post"), (int)TempData.Peek("postnum"), (string)TempData.Peek("country"), (string)TempData.Peek("password"));
+            UporabnikModel novUporabnik = new(
+    (string?)TempData.Peek("name") ?? string.Empty,
+    (string?)TempData.Peek("surname") ?? string.Empty,
+    (DateTime?)TempData.Peek("birthdate") ?? DateTime.MinValue,
+    (string?)TempData.Peek("emso") ?? string.Empty,
+    (string?)TempData.Peek("address") ?? string.Empty,
+    (string?)TempData.Peek("email") ?? string.Empty,
+    (string?)TempData.Peek("post") ?? string.Empty,
+    (int?)TempData.Peek("postnum") ?? 0,
+    (string?)TempData.Peek("country") ?? string.Empty,
+    (string?)TempData.Peek("password") ?? string.Empty
+);
             TempData.Keep();
-
             return View(novUporabnik);
         }
 

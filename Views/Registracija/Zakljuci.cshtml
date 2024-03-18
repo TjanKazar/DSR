@@ -3,16 +3,14 @@
     {
         Context.Response.Redirect("/Registracija");
     }
-    ViewData["Title"] = "Zaključi";
+    ViewData["Title"] = "Zadnji korak";
 }
 <h1>@ViewData["Title"]</h1>
-
-<h1>@TempData.Peek("address") @TempData.Peek("postnum") @TempData.Peek("post") @TempData.Peek("country")</h1>
 
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h2 class="mb-0">User Registration Form</h2>
+            <h2 class="mb-0">Registracija :</h2>
         </div>
         <div class="card-body">
             <form id="zakljuci-form" action="novUporabnik" method="post">
@@ -31,7 +29,7 @@
                     <input type="password" id="pass2" name="pass2" class="form-control" required>
                 </div>
                 <br />
-                <button type="submit" class="btn btn-primary">Next step</button>
+                <button type="submit" class="btn btn-primary">Naslednji korak</button>
             </form>
         </div>
     </div>

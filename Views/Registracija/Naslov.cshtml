@@ -3,36 +3,36 @@
     {
         Context.Response.Redirect("/Registracija");
     }
-    ViewData["Title"] = "Naslov :";
+    ViewData["Title"] = "Naslov";
 }
-<h1>@TempData.Peek("name") @TempData.Peek("surname") @TempData.Peek("birthdate") @TempData.Peek("emso")</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
-            <h2 class="mb-0">User Registration Form</h2>
+            <h2 class="mb-0">Registracija :</h2>
         </div>
         <div class="card-body">
             <form id="naslov-form" action="Zakljuci" method="post">
                 <div id="error-message-post" style="color: red; display: none;">Prosimo vnesite pravilno poštno številko.</div>
                 <div class="form-group">
-                    <label for="address">Naslov:</label>
+                    <label for="address">Naslov :</label>
                     <input type="text" id="address" name="address" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="postnum">Poštna številka:</label>
-                    <input type="number" id="postnum" name="postnum" class="form-control" required>
+                    <label for="postnum">Poštna številka :</label>
+                    <input type="text" id="postnum" name="postnum" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="post">Pošta:</label>
+                    <label for="post">Pošta :</label>
                     <input type="text" id="post" name="post" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="country">Država:</label>
+                    <label for="country">Država :</label>
                     <input type="text" id="country" name="country" class="form-control" required>
                 </div>
                 <br />
-                <button type="submit" class="btn btn-primary">Next step</button>
+                <button type="submit" class="btn btn-primary">Ustvari račun</button>
             </form>
         </div>
     </div>
