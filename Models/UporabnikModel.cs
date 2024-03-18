@@ -8,6 +8,9 @@
         public string emso { get; set; }
         public string address { get; set; }
         public string email { get; set; }
+        public string post {  get; set; }
+        public int postnum { get; set; }
+        public string country { get; set; }
         public string password { get; set; }
         public List<Racun> receipts { get; set; }
 
@@ -31,6 +34,17 @@
             this.password = password;
             this.receipts = receipts;
         }
-        public UporabnikModel(){}
+        public UporabnikModel(string name, string surname, DateTime birthdate, string emso, string address, string email,string post,int postnum,string country, string password) {
+            this.name = name;
+            this.surname = surname;
+            this.birthdate = birthdate;
+            this.emso = emso;
+            this.address = address;
+            this.email = email;
+            this.post = post;
+            this.postnum = postnum;
+            this.country = country;
+            this.password = password;
+        }
     }
 }

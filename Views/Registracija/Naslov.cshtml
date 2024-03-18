@@ -1,7 +1,7 @@
 ﻿@{   
     if (TempData.Peek("name") == null || TempData.Peek("surname") == null || TempData.Peek("birthdate") == null || TempData.Peek("emso") == null)
     {
-        Context.Response.Redirect("/Registracija/Naslov");
+        Context.Response.Redirect("/Registracija");
     }
     ViewData["Title"] = "Naslov :";
 }

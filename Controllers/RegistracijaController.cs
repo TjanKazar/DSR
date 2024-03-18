@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DSR_KAZAR_N1.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using System.Net;
 using System.Xml.Linq;
@@ -55,7 +56,10 @@ namespace DSR_KAZAR_N1.Controllers
             TempData["pass1"] = pass1;
             TempData["pass2"] = pass2;
             TempData.Keep();
-            return View();
+            UporabnikModel novUporabnik = new((string)TempData.Peek("name"), (string)TempData.Peek("surname"), (DateTime)TempData.Peek("birthdate"), (string)TempData.Peek("emso"), (string)TempData.Peek("address"), (string)TempData.Peek("email"), (string)TempData.Peek("post"), (int)TempData.Peek("postnum"), (string)TempData.Peek("country"), (string)TempData.Peek("password"));
+            TempData.Keep();
+
+            return View(novUporabnik);
         }
 
     }
