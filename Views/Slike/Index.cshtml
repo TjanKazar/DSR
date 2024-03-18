@@ -5,22 +5,19 @@
 <br/>
 <h2>@Model.ime</h2>
 
-<div class="accordion">
-    <div class="accordion-item">
-        <div class=" accordion-header">ime slike</div>
-        <div class="accordion-content">@Model.ime</div>
-            </div>
-    <div class="accordion-item">
-        <div class=" accordion-header">cena slike</div>
-        <div class="accordion-content">@Model.cena eur</div>
-    </div>
-    <div class="accordion-item">
-        <div class=" accordion-header">leto izdaje</div>
-        <div class="accordion-content">@Model.letoIzdaje</div>
-    </div>
-    <div class="accordion-item">
-        <div class=" accordion-header">Ali je slika unikat ?</div>
-        <div class="accordion-content">
+<div id="accordion">
+    
+        <h3 >ime slike</h3>
+        <div>@Model.ime</div>
+                
+        <h3>cena slike</h3>
+        <div>@Model.cena eur</div>
+        
+        <h3>leto izdaje</h3>
+        <div>@Model.letoIzdaje</div>
+       
+        <h3>Ali je slika unikat ?</h3>
+        <div>
             @if (Model.jeUnikat == true)
             {
                 <p>Da</p>
@@ -30,6 +27,6 @@
                 <p>Ne</p>
             }
         </div>
-    </div>
+    
            </div>
 
