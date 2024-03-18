@@ -2,34 +2,34 @@
 {
     public class UporabnikModel
     {
-        public string ime { get; set; }
-        public string priimek { get; set; }
-        public DateTime datumRojstva { get; set; }
-        public string emšo { get; set; }
-        public string naslov { get; set; }
+        public string name { get; set; }
+        public string surname{ get; set; }
+        public DateTime birthdate { get; set; }
+        public string emso { get; set; }
+        public string address { get; set; }
         public string email { get; set; }
-        public string geslo { get; set; }
-        public List<Racun> racuni { get; set; }
+        public string password { get; set; }
+        public List<Racun> receipts { get; set; }
 
-        public UporabnikModel(string ime, string priimek, DateTime datumRojstva, string email, List<Racun> racuni)
+        public UporabnikModel(string name, string surname, DateTime birthdate, string email, List<Racun> receipts)
         {
-            this.ime = ime;
-            this.priimek = priimek;
-            this.datumRojstva = datumRojstva;
+            this.name = name;
+            this.surname = surname;
+            this.birthdate = birthdate;
             this.email = email;
-            this.racuni = racuni;
+            this.receipts = receipts;
         }
 
-        public UporabnikModel(string ime, string priimek, DateTime datumRojstva, string emšo, string naslov, string email, string geslo, List<Racun> racuni)
+        public UporabnikModel(string name, string surname, DateTime birthdate, string emso, string address, string email, string password, List<Racun> receipts)
         {
-            this.ime = ime;
-            this.priimek = priimek;
-            this.datumRojstva = datumRojstva;
-            this.emšo = emšo;
-            this.naslov = naslov;
+            this.name = name;
+            this.surname = surname;
+            this.birthdate = birthdate;
+            this.emso = emso;
+            this.address = address;
             this.email = email;
-            this.geslo = geslo;
-            this.racuni = racuni;
+            this.password = password;
+            this.receipts = receipts;
         }
         public UporabnikModel(){}
     }

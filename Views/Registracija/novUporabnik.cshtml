@@ -1,7 +1,13 @@
 ﻿@{
+    
     ViewData["Title"] = "Nov Uporabnik";
 }
 <h1>@ViewData["Title"]</h1>
+
+<h1>@TempData.Peek("name") @TempData.Peek("surname") @TempData.Peek("birthdate") @TempData.Peek("emso")</h1>
+<h1>@TempData.Peek("address") @TempData.Peek("postnum") @TempData.Peek("post") @TempData.Peek("country")</h1>
+<h1>@TempData.Peek("address") @TempData.Peek("pass1")</h1>
+
 <div class="align-content-center">
 <label for="ocena" class="ocenaLable">Ocenite svojo izkušnjo ustvarjanja računa:</label>
 <br />

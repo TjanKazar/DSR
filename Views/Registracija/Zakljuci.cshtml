@@ -1,7 +1,13 @@
 ﻿@{
+    if(TempData.Peek("address") == null || TempData.Peek("postnum") == null || TempData.Peek("post") == null || TempData.Peek("country") == null)
+    {
+        Context.Response.Redirect("/Registracija/Naslov");
+    }
     ViewData["Title"] = "Zaključi";
 }
 <h1>@ViewData["Title"]</h1>
+
+<h1>@TempData.Peek("address") @TempData.Peek("postnum") @TempData.Peek("post") @TempData.Peek("country")</h1>
 
 <div class="container mt-5">
     <div class="card">
