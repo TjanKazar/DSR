@@ -10,7 +10,7 @@ namespace DSR_KAZAR_N1.Controllers
     {
         public IActionResult Index()
         {
-
+            TempData.Clear();
             return View();
         }
         public IActionResult Naslov()
@@ -47,15 +47,10 @@ namespace DSR_KAZAR_N1.Controllers
 
         public IActionResult novUporabnik()
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult novUporabnik(string email, string pass1, string pass2)
-        {
-            TempData["email"] = email;
-            TempData["pass1"] = pass1;
-            TempData["pass2"] = pass2;
-            TempData.Keep();
+            if (TempData.Peek("email") == null || TempData.Peek("pass1") == null)
+            {
+                return RedirectToAction("Index");
+            }
             UporabnikModel novUporabnik = new(
     (string?)TempData.Peek("name") ?? string.Empty,
     (string?)TempData.Peek("surname") ?? string.Empty,
@@ -66,10 +61,20 @@ namespace DSR_KAZAR_N1.Controllers
     (string?)TempData.Peek("post") ?? string.Empty,
     (int?)TempData.Peek("postnum") ?? 0,
     (string?)TempData.Peek("country") ?? string.Empty,
-    (string?)TempData.Peek("password") ?? string.Empty
+    (string)TempData.Peek("pass1")
 );
-            TempData.Keep();
             return View(novUporabnik);
+        }
+        [HttpPost]
+        public IActionResult novUporabnik(string email, string pass1, string pass2)
+        {
+            TempData["email"] = email;
+            TempData["pass1"] = pass1;
+            TempData["pass2"] = pass2;
+            TempData.Keep();
+
+           
+            return RedirectToAction();
         }
 
     }

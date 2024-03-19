@@ -1,7 +1,9 @@
 ﻿@{
-    if (TempData.Peek("email") == null)
+    @model DSR_KAZAR_N1.Models.UporabnikModel
+
+    if (Model.email == null || Model.name == null)
     {
-        Context.Response.Redirect("/Registracija/Zakljuci");
+        Context.Response.Redirect("/Registracija");
     }
     ViewData["Title"] = "Nov Uporabnik";
 }
@@ -9,7 +11,7 @@
 
 <h1>@Model.name @Model.surname @Model.birthdate @Model.emso</h1>
 <h1>@Model.address @Model.email @Model.post @Model.country</h1>
-<h1>@Model.address @Model.password @Model.postnum</h1>
+<h1>@Model.address Geslo : @Model.password Poštna : @Model.postnum</h1>
 
 <div class="align-content-center">
 <label for="ocena" class="ocenaLable">Ocenite svojo izkušnjo ustvarjanja računa:</label>
