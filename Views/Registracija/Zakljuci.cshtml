@@ -1,8 +1,5 @@
 ﻿@{
-    if(TempData.Peek("address") == null || TempData.Peek("postnum") == null || TempData.Peek("post") == null || TempData.Peek("country") == null)
-    {
-        Context.Response.Redirect("/Registracija");
-    }
+    
     ViewData["Title"] = "Zadnji korak";
 }
 <h1>@ViewData["Title"]</h1>

@@ -15,7 +15,11 @@ namespace DSR_KAZAR_N1.Controllers
         }
         public IActionResult Naslov()
         {
-
+            if (TempData.Peek("name") == null || TempData.Peek("surname") == null || TempData.Peek("birthdate") == null || TempData.Peek("emso") == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
             return View();
         }
 
@@ -28,10 +32,15 @@ namespace DSR_KAZAR_N1.Controllers
             TempData["emso"] = emso;
 
             TempData.Keep();
-            return View();
+            return RedirectToAction();
         }
         public IActionResult Zakljuci()
         {
+            if (TempData.Peek("address") == null || TempData.Peek("postnum") == null || TempData.Peek("post") == null || TempData.Peek("country") == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
             return View();
         }
         [HttpPost]
@@ -42,7 +51,7 @@ namespace DSR_KAZAR_N1.Controllers
             TempData["post"] = post;
             TempData["country"] = country;
             TempData.Keep();
-            return View();
+            return RedirectToAction();
         }
 
         public IActionResult novUporabnik()
@@ -51,6 +60,8 @@ namespace DSR_KAZAR_N1.Controllers
             {
                 return RedirectToAction("Index");
             }
+            else
+            {
             UporabnikModel novUporabnik = new(
     (string?)TempData.Peek("name") ?? string.Empty,
     (string?)TempData.Peek("surname") ?? string.Empty,
@@ -64,6 +75,7 @@ namespace DSR_KAZAR_N1.Controllers
     (string)TempData.Peek("pass1")
 );
             return View(novUporabnik);
+            }
         }
         [HttpPost]
         public IActionResult novUporabnik(string email, string pass1, string pass2)
