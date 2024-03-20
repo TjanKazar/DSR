@@ -65,3 +65,11 @@ body {
     top: 50%;
     transform: translateY(-50%);
 }
+#return-btn {
+    width: 50%;
+    margin: 0 auto;
+    right: 25%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(90%);
+}

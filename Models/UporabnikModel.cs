@@ -1,7 +1,10 @@
-﻿namespace DSR_KAZAR_N1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DSR_KAZAR_N1.Models
 {
     public class UporabnikModel
     {
+        [Required(ErrorMessage ="polje Ime mora biti izpolnjeno")]
         public string name { get; set; }
         public string surname{ get; set; }
         public DateTime birthdate { get; set; }

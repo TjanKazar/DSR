@@ -1,4 +1,5 @@
 ﻿@{
+    @model DSR_KAZAR_N1.Models.UporabnikModel
     ViewData["Title"] = "Registracija";
 }
 <h1>@ViewData["Title"]</h1>
@@ -14,6 +15,7 @@
                 <div class="form-group">
                     <label for="name">Ime :</label>
                     <input type="text" id="name" name="name" class="form-control" required>
+                    <span asp-validation-for="name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label for="surname">Priimek :</label>

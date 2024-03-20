@@ -11,6 +11,8 @@ namespace DSR_KAZAR_N1.Controllers
         public IActionResult Index()
         {
             TempData.Clear();
+            if (!ModelState.IsValid)
+            return View();
             return View();
         }
         public IActionResult Naslov()
@@ -72,7 +74,7 @@ namespace DSR_KAZAR_N1.Controllers
     (string?)TempData.Peek("post") ?? string.Empty,
     (int?)TempData.Peek("postnum") ?? 0,
     (string?)TempData.Peek("country") ?? string.Empty,
-    (string)TempData.Peek("pass1")
+    (string?)TempData.Peek("pass1") ?? string.Empty
 );
             return View(novUporabnik);
             }

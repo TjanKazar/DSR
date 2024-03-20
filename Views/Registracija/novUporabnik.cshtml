@@ -1,6 +1,6 @@
 ﻿@{
-    @model DSR_KAZAR_N1.Models.UporabnikModel
-
+    @model UporabnikModel
+    
     if (Model.email == null || Model.name == null)
     {
         Context.Response.Redirect("/Registracija");
@@ -25,6 +25,12 @@
         <span>Dobro</span>
         <span>Brezhibno</span>
     </div>
+</div>
+<br>
+<br>
+<br>
+<div>
+        <button type="button" id="return-btn" class="btn btn-primary" onclick="window.location.href='/'">Vrni se na začetno stran.</button>
 </div>
 
 </div>
