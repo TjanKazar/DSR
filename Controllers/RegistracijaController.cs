@@ -15,55 +15,74 @@ namespace DSR_KAZAR_N1.Controllers
             return View();
             return View();
         }
-        public IActionResult Naslov()
-        {
-            if (TempData.Peek("name") == null || TempData.Peek("surname") == null || TempData.Peek("birthdate") == null || TempData.Peek("emso") == null)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            return View();
-        }
 
         [HttpPost]
-        public IActionResult Naslov(string name, string surname, DateTime birthdate, string emso)
+        public IActionResult Index(string name, string surname, DateTime birthdate, string emso)
         {
             TempData["name"] = name;
             TempData["surname"] = surname;
             TempData["birthdate"] = birthdate;
             TempData["emso"] = emso;
 
-            TempData.Keep();
-            return RedirectToAction();
-        }
-        public IActionResult Zakljuci()
-        {
-            if (TempData.Peek("address") == null || TempData.Peek("postnum") == null || TempData.Peek("post") == null || TempData.Peek("country") == null)
+            if (TempData.Peek("name") == null || TempData.Peek("surname") == null || TempData.Peek("birthdate") == null || TempData.Peek("emso") == null)
             {
                 return RedirectToAction("Index");
             }
-            else
+            TempData.Keep();
+            return RedirectToAction("Naslov");
+        }
+
+        public IActionResult Naslov()
+        {
+            if (TempData.Peek("name") == null)
+            {
+                return RedirectToAction("Index");
+            }
             return View();
         }
+
         [HttpPost]
-        public IActionResult Zakljuci(string address, int postnum, string post, string country)
+        public IActionResult Naslov(string address, int postnum, string post, string country)
         {
             TempData["address"] = address;
             TempData["postnum"] = postnum;
             TempData["post"] = post;
             TempData["country"] = country;
-            TempData.Keep();
-            return RedirectToAction();
-        }
 
-        public IActionResult novUporabnik()
+            if (TempData.Peek("address") == null || TempData.Peek("postnum") == null || TempData.Peek("post") == null || TempData.Peek("country") == null)
+            {
+                return RedirectToAction();
+            }
+            TempData.Keep();
+            return RedirectToAction("Zakljuci");
+        }
+        public IActionResult Zakljuci()
         {
+            if (TempData.Peek("name") == null || TempData.Peek("country") == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Zakljuci(string email, string pass1, string pass2)
+        {
+            TempData["email"] = email;
+            TempData["pass1"] = pass1;
+            TempData["pass2"] = pass2;
             if (TempData.Peek("email") == null || TempData.Peek("pass1") == null)
             {
                 return RedirectToAction("Index");
             }
-            else
+            TempData.Keep();
+            return RedirectToAction("novUporabnik");
+        }
+        public IActionResult novUporabnik()
+        {
+            if (TempData.Peek("name") == null || TempData.Peek("country") == null || TempData.Peek("email") == null)
             {
+                return RedirectToAction("Index");
+            }
             UporabnikModel novUporabnik = new(
     (string?)TempData.Peek("name") ?? string.Empty,
     (string?)TempData.Peek("surname") ?? string.Empty,
@@ -77,19 +96,6 @@ namespace DSR_KAZAR_N1.Controllers
     (string?)TempData.Peek("pass1") ?? string.Empty
 );
             return View(novUporabnik);
-            }
         }
-        [HttpPost]
-        public IActionResult novUporabnik(string email, string pass1, string pass2)
-        {
-            TempData["email"] = email;
-            TempData["pass1"] = pass1;
-            TempData["pass2"] = pass2;
-            TempData.Keep();
-
-           
-            return RedirectToAction();
-        }
-
     }
 }
