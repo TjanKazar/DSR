@@ -1,37 +1,52 @@
-﻿@{   
-    
+﻿@model DSR_KAZAR_N1.Models.UporabnikModel
+
+@{
     ViewData["Title"] = "Naslov";
 }
+
 <h1>@ViewData["Title"]</h1>
 
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="mb-0">Registracija :</h2>
-        </div>
-        <div class="card-body">
-            <form id="naslov-form" action="Naslov" method="post">
-                <div id="error-message-post" style="color: red; display: none;">Prosimo vnesite pravilno poštno številko.</div>
-                <div class="form-group">
-                    <label for="address">Naslov :</label>
-                    <input type="text" id="address" name="address" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="postnum">Poštna številka :</label>
-                    <input type="text" id="postnum" name="postnum" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="post">Pošta :</label>
-                    <input type="text" id="post" name="post" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="country">Država :</label>
-                    <input type="text" id="country" name="country" class="form-control" required>
-                </div>
-                <br />
-                <button type="submit" class="btn btn-primary">Ustvari račun</button>
-            </form>
-        </div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Naslov">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="address" class="control-label"></label>
+                <input asp-for="address" class="form-control" />
+                <span asp-validation-for="address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="post" class="control-label"></label>
+                <input asp-for="post" class="form-control" />
+                <span asp-validation-for="post" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="postnum" class="control-label"></label>
+                <input asp-for="postnum" class="form-control" />
+                <span asp-validation-for="postnum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="country" class="control-label"></label>
+                <input asp-for="country" class="form-control" />
+                <span asp-validation-for="country" class="text-danger"></span>
+            </div>
+
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Naslednji korak" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
 </div>
+<br>
+<div>
+    <a asp-controller="Home" asp-action="Index">Na domačo stran</a>
+</div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,36 +1,96 @@
-﻿@{
-    @model UporabnikModel
-    
-    if (Model.email == null || Model.name == null)
-    {
-        Context.Response.Redirect("/Registracija");
-    }
-    ViewData["Title"] = "Nov Uporabnik";
+﻿@model DSR_KAZAR_N1.Models.UporabnikModel
+
+@{
+    ViewData["Title"] = "novUporabnik";
 }
 <h1>@ViewData["Title"]</h1>
 
-<h1>@Model.name @Model.surname @Model.birthdate @Model.emso</h1>
-<h1>@Model.address @Model.email @Model.post @Model.country</h1>
-<h1>@Model.address Geslo : @Model.password Poštna : @Model.postnum</h1>
-
-<div class="align-content-center">
-<label for="ocena" class="ocenaLable">Ocenite svojo izkušnjo ustvarjanja računa:</label>
-<br />
-<div class="slider-container">
-    <input type="range" class="form-range" min="1" max="5" step="1" id="ocena">
-    <div class="labels">
-        <span>Slabo</span>
-        <span>Sprejemljivo</span>
-        <span>Vredu</span>
-        <span>Dobro</span>
-        <span>Brezhibno</span>
-    </div>
-</div>
-<br>
-<br>
-<br>
 <div>
-        <button type="button" id="return-btn" class="btn btn-primary" onclick="window.location.href='/'">Vrni se na začetno stran.</button>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.birthdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.birthdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.emso)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.emso)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.post)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.post)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.postnum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.postnum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.country)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.password)
+        </dd>
+    </dl>
 </div>
+<div class="align-content-center">
+    <label for="ocena" class="ocenaLable">Ocenite svojo izkušnjo ustvarjanja računa:</label>
+    <br />
+    <div class="slider-container">
+        <input type="range" class="form-range" min="1" max="5" step="1" id="ocena">
+        <div class="labels">
+            <span>Slabo</span>
+            <span>Sprejemljivo</span>
+            <span>Vredu</span>
+            <span>Dobro</span>
+            <span>Brezhibno</span>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+        <button type="button" id="return-btn" class="btn btn-primary" onclick="window.location.href='/'">Vrni se na začetno stran.</button>
+    </div>
 
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
 </div>

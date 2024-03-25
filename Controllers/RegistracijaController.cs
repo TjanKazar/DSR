@@ -11,8 +11,7 @@ namespace DSR_KAZAR_N1.Controllers
         public IActionResult Index()
         {
             TempData.Clear();
-            if (!ModelState.IsValid)
-            return View();
+            
             return View();
         }
 
@@ -65,11 +64,11 @@ namespace DSR_KAZAR_N1.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Zakljuci(string email, string pass1, string pass2)
+        public IActionResult Zakljuci(string email, string password, string password2)
         {
             TempData["email"] = email;
-            TempData["pass1"] = pass1;
-            TempData["pass2"] = pass2;
+            TempData["pass1"] = password;
+            TempData["pass2"] = password2;
             if (TempData.Peek("email") == null || TempData.Peek("pass1") == null)
             {
                 return RedirectToAction("Index");

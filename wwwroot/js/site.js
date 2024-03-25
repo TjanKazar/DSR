@@ -16,8 +16,6 @@ function PassIsEqual(pass1, pass2) {
 
 $(document).ready(function () {
 
-    $("#birthdate").datepicker();
-
     $('#registration-form').submit(function (e) {
         var emsoValue = $('#emso').val();
         if (!isValidEMSO(emsoValue)) {
