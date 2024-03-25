@@ -13,6 +13,7 @@ namespace DSR_KAZAR_N1.Controllers
             TempData.Clear();
             
             return View();
+            
         }
 
         [HttpPost]

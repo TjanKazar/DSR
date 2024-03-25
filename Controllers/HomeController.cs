@@ -12,13 +12,11 @@ namespace DSR_KAZAR_N1.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             TempData.Clear();
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

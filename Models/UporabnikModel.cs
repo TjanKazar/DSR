@@ -6,6 +6,7 @@ namespace DSR_KAZAR_N1.Models
     public class UporabnikModel
     {
         [Required(ErrorMessage ="polje Ime mora biti izpolnjeno")]
+        [Display(Name="Ime")]
         public string name { get; set; }
 
         [Required(ErrorMessage = "polje Priimek mora biti izpolnjeno")]
@@ -21,6 +22,7 @@ namespace DSR_KAZAR_N1.Models
         public string address { get; set; }
 
         [Required(ErrorMessage = "polje Pošta mora biti izpolnjeno")]
+        [Required]
         public string post {  get; set; }
 
         [Required(ErrorMessage = "polje Poštna številka mora biti izpolnjeno")]
