@@ -22,7 +22,6 @@ namespace DSR_KAZAR_N1.Models
         public string address { get; set; }
 
         [Required(ErrorMessage = "polje Pošta mora biti izpolnjeno")]
-        [Required]
         public string post {  get; set; }
 
         [Required(ErrorMessage = "polje Poštna številka mora biti izpolnjeno")]
