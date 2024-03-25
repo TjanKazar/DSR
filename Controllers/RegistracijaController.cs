@@ -11,8 +11,6 @@ namespace DSR_KAZAR_N1.Controllers
         public IActionResult Index()
         {
             TempData.Clear();
-            if (!ModelState.IsValid)
-            return View();
             return View();
         }
 
