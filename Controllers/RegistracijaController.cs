@@ -17,16 +17,17 @@ namespace DSR_KAZAR_N1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string name, string surname, DateTime birthdate, string emso)
+        public IActionResult Index(page1Model model)
         {
-            TempData["name"] = name;
-            TempData["surname"] = surname;
-            TempData["birthdate"] = birthdate;
-            TempData["emso"] = emso;
+            TempData["name"] = model.name;
+            TempData["surname"] = model.surname;
+            TempData["birthdate"] = model.birthdate;
+            TempData["emso"] = model.emso;
 
-            if (TempData.Peek("name") == null || TempData.Peek("surname") == null || TempData.Peek("birthdate") == null || TempData.Peek("emso") == null)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                Console.WriteLine("in line 29");
+                return View(model);
             }
             TempData.Keep();
             return RedirectToAction("Naslov");
@@ -42,16 +43,16 @@ namespace DSR_KAZAR_N1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Naslov(string address, int postnum, string post, string country)
+        public IActionResult Naslov(page2Model model)
         {
-            TempData["address"] = address;
-            TempData["postnum"] = postnum;
-            TempData["post"] = post;
-            TempData["country"] = country;
+            TempData["address"] = model.address;
+            TempData["postnum"] = model.postnum;
+            TempData["post"] = model.post;
+            TempData["country"] = model.country;
 
-            if (TempData.Peek("address") == null || TempData.Peek("postnum") == null || TempData.Peek("post") == null || TempData.Peek("country") == null)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction();
+                return View(model);
             }
             TempData.Keep();
             return RedirectToAction("Zakljuci");
@@ -65,14 +66,14 @@ namespace DSR_KAZAR_N1.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Zakljuci(string email, string password, string password2)
+        public IActionResult Zakljuci(page3Model model)
         {
-            TempData["email"] = email;
-            TempData["pass1"] = password;
-            TempData["pass2"] = password2;
+            TempData["email"] = model.email;
+            TempData["pass1"] = model.password;
+            TempData["pass2"] = model.password2;
             if (TempData.Peek("email") == null || TempData.Peek("pass1") == null)
             {
-                return RedirectToAction("Index");
+                return View(model);
             }
             TempData.Keep();
             return RedirectToAction("novUporabnik");

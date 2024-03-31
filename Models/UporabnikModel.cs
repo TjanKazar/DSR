@@ -7,6 +7,7 @@ namespace DSR_KAZAR_N1.Models
     {
         [Required(ErrorMessage ="polje Ime mora biti izpolnjeno")]
         [Display(Name="Ime")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Ime lahko vsebuje samo črke.")]
         public string name { get; set; }
 
         [Required(ErrorMessage = "polje Priimek mora biti izpolnjeno")]
@@ -74,13 +75,10 @@ namespace DSR_KAZAR_N1.Models
             this.country = country;
             this.password = password;
         }
+       
 
-        public UporabnikModel(string name, string surname, DateTime birthdate, string emso)
+        public UporabnikModel()
         {
-            this.name = name;
-            this.surname = surname;
-            this.birthdate = birthdate;
-            this.emso = emso;
         }
     }
 }
