@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Serialization;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DSR_KAZAR_N1.Models
 {
@@ -15,6 +14,10 @@ namespace DSR_KAZAR_N1.Models
 
         [Required(ErrorMessage = "polje Datum Rojstva mora biti izpolnjeno")]
         public DateTime birthdate { get; set; }
+
+        [KrajRojstvaValidation(ErrorMessage = "Izberite eno od veljavnih možnosti")]
+        [Required(ErrorMessage = "polje KrajRojstva Rojstva mora biti izpolnjeno")]
+        public string birthplace { get; set; }
 
         [Required(ErrorMessage = "polje EMŠO mora biti izpolnjeno")]
         public string emso { get; set; }
@@ -52,31 +55,20 @@ namespace DSR_KAZAR_N1.Models
             this.receipts = receipts;
         }
 
-        public UporabnikModel(string name, string surname, DateTime birthdate, string emso, string address, string email, string password, List<Racun> receipts)
+        public UporabnikModel(string name, string surname, DateTime birthdate, string birthplace, string emso, string address, string post, int postnum, string country, string email, string password)
         {
             this.name = name;
             this.surname = surname;
             this.birthdate = birthdate;
+            this.birthplace = birthplace;
             this.emso = emso;
             this.address = address;
-            this.email = email;
-            this.password = password;
-            this.receipts = receipts;
-        }
-        public UporabnikModel(string name, string surname, DateTime birthdate, string emso, string address, string email,string post,int postnum,string country, string password) {
-            this.name = name;
-            this.surname = surname;
-            this.birthdate = birthdate;
-            this.emso = emso;
-            this.address = address;
-            this.email = email;
             this.post = post;
             this.postnum = postnum;
             this.country = country;
+            this.email = email;
             this.password = password;
         }
-       
-
         public UporabnikModel()
         {
         }
