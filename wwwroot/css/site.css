@@ -73,3 +73,7 @@ body {
     top: 50%;
     transform: translateY(90%);
 }
+
+#tabs{
+    justify-content: left;
+}

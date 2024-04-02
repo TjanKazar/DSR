@@ -7,8 +7,7 @@ namespace DSR_KAZAR_N1.Controllers
     {
         public IActionResult Index()
         {
-            SlikaModel slika = new("Drawing", 99.99m, 2001, true);
-            return View(slika);
+            return View();
         }
     }
 }

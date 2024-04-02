@@ -5,11 +5,12 @@ namespace DSR_KAZAR_N1.Controllers
 {
     public class RegistracijaController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(UporabnikModel model)
         {
+
             TempData.Clear();
             
-            return View();
+            return View(model);
             
         }
 
@@ -28,7 +29,7 @@ namespace DSR_KAZAR_N1.Controllers
                 return View(model);
             }
             TempData.Keep();
-            return RedirectToAction("Naslov");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Naslov()
@@ -53,7 +54,7 @@ namespace DSR_KAZAR_N1.Controllers
                 return View(model);
             }
             TempData.Keep();
-            return RedirectToAction("Zakljuci");
+            return RedirectToAction("_Zakljuci");
         }
         public IActionResult Zakljuci()
         {
@@ -74,7 +75,7 @@ namespace DSR_KAZAR_N1.Controllers
                 return View(model);
             }
             TempData.Keep();
-            return RedirectToAction("novUporabnik");
+            return RedirectToAction("Index");
         }
         public IActionResult novUporabnik()
         {

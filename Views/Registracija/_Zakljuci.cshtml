@@ -1,11 +1,5 @@
-﻿@model DSR_KAZAR_N1.Models.page3Model
+﻿@model DSR_KAZAR_N1.Models.UporabnikModel
 
-@{
-    ViewData["Title"] = "Zakljuci";
-}
-
-<h1>@ViewData["Title"]</h1>
-<h4>UporabnikModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -37,9 +31,3 @@
 <div>
     <a asp-controller="Home" asp-action="Index">Na domačo stran</a>
 </div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

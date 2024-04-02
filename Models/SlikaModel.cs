@@ -23,5 +23,9 @@
             this.jeUnikat = jeUnikat;
             this.racun = racun;
         }
+
+        public SlikaModel()
+        {
+        }
     }
 }

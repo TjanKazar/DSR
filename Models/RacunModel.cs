@@ -14,5 +14,6 @@ namespace DSR_KAZAR_N1.Models
             this.nakup = nakup;
             this.cenaSkupaj = cenaSkupaj;
         }
+        public Racun() { }
     }
 }

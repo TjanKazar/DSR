@@ -44,6 +44,10 @@ namespace DSR_KAZAR_N1.Models
         [Compare("password", ErrorMessage = "Gesli se ne ujemata")]
         public string password2 { get; set; }
 
+        //public SlikaModel Slika { get; set; }
+        //public UporabnikModel Uporabnik { get; set; }
+        //public Racun Racun { get; set; }
+
         public List<Racun> receipts { get; set; }
 
         public UporabnikModel(string name, string surname, DateTime birthdate, string email, List<Racun> receipts)
@@ -72,5 +76,18 @@ namespace DSR_KAZAR_N1.Models
         public UporabnikModel()
         {
         }
+
+        //public UporabnikModel(Racun racun)
+        //{
+        //    Racun = new Racun();
+        //}
+        //public UporabnikModel(UporabnikModel uporabnik)
+        //{
+        //    Uporabnik = new UporabnikModel();
+        //}
+        //public UporabnikModel(SlikaModel slika)
+        //{
+        //    Slika = new SlikaModel();
+        //}
     }
 }

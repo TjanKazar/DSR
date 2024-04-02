@@ -1,0 +1,16 @@
+﻿
+<p>Datum izdaje: @Model.Racun.datumIzdaje</p>
+<p>Nakup:</p>
+@if (Model.Racun.nakup.Count != 0)
+{
+    @foreach (SlikaModel s in Model.Racun.nakup)
+    {
+        <p>@s.ime</p>
+    }
+}
+else
+{
+    <p>V računu ni slike</p>
+}
+
+<p>Skupna cena: @Model.Racun.cenaSkupaj</p>

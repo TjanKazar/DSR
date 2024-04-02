@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,37 +8,18 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DSR_KAZAR_N1.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">S L I K A R S T V O</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Slike" asp-action="">Slike</a>
-                        </li>                      
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Uporabniki" asp-action="">Uporabniki</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Racuni" asp-action="">Racuni</a>
-                        </li>
-                    </ul>
-                    <ul class ="navbar-nav flex-grow-2">
-                        <li class="nav-item" id="reg">
-                            <a class="nav-link text-primary flex-grow-3" asp-area="" asp-controller="Registracija" asp-action="">Registracija</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <ul id="reg" class="navbar-nav flex-grow-2">
+                <li class="nav-item">
+                    <a class="nav-link text-primary flex-grow-3" asp-area="" asp-controller="Registracija" asp-action="">Registracija</a>
+                </li>
+            </ul>
+
         </nav>
     </header>
     <div class="container">

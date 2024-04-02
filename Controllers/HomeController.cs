@@ -16,7 +16,21 @@ namespace DSR_KAZAR_N1.Controllers
         public IActionResult Index()
         {
             TempData.Clear();
-            return View();
+            SlikaModel slika = new("Drawing", 99.99m, 2001, true);
+            DateTime datumIzdaje = new DateTime(2024, 3, 14);
+            List<SlikaModel> nakupList = new List<SlikaModel>();
+            decimal cenaSkupaj = 100.50m;
+            Racun racun = new Racun(datumIzdaje, nakupList, cenaSkupaj);
+            DateTime dateTime = new DateTime(2001, 12, 31);
+            List<Racun> racuni = new();
+            UporabnikModel uporabnik = new("Janez", "Novak", dateTime, "janez.novak@test.com", racuni);
+            var home = new homeModel
+            {
+                Slika = slika,
+                Uporabnik = uporabnik,
+                Racun = racun
+            };
+            return View(home);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

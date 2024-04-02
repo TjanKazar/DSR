@@ -8,11 +8,22 @@ function isValidPostNum(postnum) {
 
 $(document).ready(function () {
 
-    $('#naslov-form').submit(function (e) {
-        var postnumValue = $('#postnum').val();
-        if (!isValidPostNum(postnumValue)) {
-            e.preventDefault();
-            $('#error-message-post').show();
-        }
+    $(function () {
+        $('#tabs-content').tabs({
+            beforeLoad: function (event, ui) {
+                ui.panel.html('<div class="loading"></div>');
+            }
+        });
+        $(function () {
+            $("#tabs").tabs();
+        });
+        $(function () {
+            $("#tabs1").tabs();
+        });
+
+        $('#tabs-list').on('click', 'a', function () {
+            var url = $(this).attr('href');
+            $(url).load(url.substring(1));
+        });
     });
 });
