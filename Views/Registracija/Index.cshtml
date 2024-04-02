@@ -1,21 +1,22 @@
-﻿
-<div id="tabs1">
-    <ul>
-        <li><a href="#tab-ime">Ime</a></li>
-        <li><a href="#tab-naslov">Naslov</a></li>
-        <li><a href="#tab-zakljuci">Zakljuci</a></li>
-        <li><a href="#tab-nov-uporabnik">Nov Uporabnik</a></li>
-    </ul>
-    <div id="tab-ime">
-        @Html.Partial("_Ime")
+﻿@using (Html.BeginForm("Index", "Registracija", FormMethod.Post))
+{
+    <div id="tabs">
+        <ul>
+            <li><a href="#tab-ime">Ime</a></li>
+            <li><a href="#tab-naslov">Naslov</a></li>
+            <li><a href="#tab-zakljuci">Zakljuci</a></li>
+        </ul>
+        <div id="tab-ime">
+            @Html.Partial("_Ime")
+        </div>
+        <div id="tab-naslov">
+            @Html.Partial("_Naslov")
+        </div>
+        <div id="tab-zakljuci">
+            @Html.Partial("_Zakljuci")
+        </div>
     </div>
-    <div id="tab-naslov">
-        @Html.Partial("_Naslov")
+    <div class="form-group">
+        <input type="submit" value="Končaj z registracijo" class="btn btn-primary" />
     </div>
-    <div id="tab-zakljuci">
-        @Html.Partial("_Zakljuci")
-    </div>
-    <div id="tab-nov-uporabnik">
-        @Html.Partial("_novUporabnik")
-    </div>
-</div>
+}

@@ -7,7 +7,7 @@ namespace DSR_KAZAR_N1.Controllers
     {
         public IActionResult Index()
         {
-            DateTime dateTime = new DateTime(2001, 12, 31);
+            DateTime dateTime = new(2001, 12, 31);
             List<Racun> racuni = new();
             UporabnikModel uporabnik = new("Janez", "Novak", dateTime, "janez.novak@test.com", racuni);
             return View(uporabnik);

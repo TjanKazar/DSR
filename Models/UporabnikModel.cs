@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DSR_KAZAR_N1.Models
 {
@@ -13,6 +14,7 @@ namespace DSR_KAZAR_N1.Models
         public string surname{ get; set; }
 
         [Required(ErrorMessage = "polje Datum Rojstva mora biti izpolnjeno")]
+        [DateFormatValidation("dd.MM.yy", ErrorMessage = "Datum Rojstva mora biti v formatu dd.mm.yy")]
         public DateTime birthdate { get; set; }
 
         [KrajRojstvaValidation(ErrorMessage = "Izberite eno od veljavnih možnosti")]
@@ -26,7 +28,7 @@ namespace DSR_KAZAR_N1.Models
         public string address { get; set; }
 
         [Required(ErrorMessage = "polje Pošta mora biti izpolnjeno")]
-        public string post {  get; set; }
+        public string post { get; set; }
 
         [Required(ErrorMessage = "polje Poštna številka mora biti izpolnjeno")]
         public int postnum { get; set; }
@@ -35,18 +37,18 @@ namespace DSR_KAZAR_N1.Models
         public string country { get; set; }
 
         [Required(ErrorMessage = "polje Email mora biti izpolnjeno")]
+        [EmailAddress(ErrorMessage = "Polje email mora biti e-poštni naslov")]
         public string email { get; set; }
 
         [Required(ErrorMessage = "polje Geslo mora biti izpolnjeno")]
+        [PasswordPropertyText]
+        [Password]
         public string password { get; set; }
 
         [Required(ErrorMessage = "polje Geslo mora biti izpolnjeno")]
         [Compare("password", ErrorMessage = "Gesli se ne ujemata")]
+        [PasswordPropertyText]
         public string password2 { get; set; }
-
-        //public SlikaModel Slika { get; set; }
-        //public UporabnikModel Uporabnik { get; set; }
-        //public Racun Racun { get; set; }
 
         public List<Racun> receipts { get; set; }
 
@@ -59,7 +61,7 @@ namespace DSR_KAZAR_N1.Models
             this.receipts = receipts;
         }
 
-        public UporabnikModel(string name, string surname, DateTime birthdate, string birthplace, string emso, string address, string post, int postnum, string country, string email, string password)
+        public UporabnikModel(string name, string surname, DateTime birthdate, string birthplace, string emso, string address, string post, int postnum, string country, string email, string password, string password2)
         {
             this.name = name;
             this.surname = surname;
@@ -72,22 +74,10 @@ namespace DSR_KAZAR_N1.Models
             this.country = country;
             this.email = email;
             this.password = password;
+            this.password2 = password2;
         }
         public UporabnikModel()
         {
         }
-
-        //public UporabnikModel(Racun racun)
-        //{
-        //    Racun = new Racun();
-        //}
-        //public UporabnikModel(UporabnikModel uporabnik)
-        //{
-        //    Uporabnik = new UporabnikModel();
-        //}
-        //public UporabnikModel(SlikaModel slika)
-        //{
-        //    Slika = new SlikaModel();
-        //}
     }
 }

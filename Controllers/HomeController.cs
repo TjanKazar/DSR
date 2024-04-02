@@ -21,7 +21,7 @@ namespace DSR_KAZAR_N1.Controllers
             List<SlikaModel> nakupList = new List<SlikaModel>();
             decimal cenaSkupaj = 100.50m;
             Racun racun = new Racun(datumIzdaje, nakupList, cenaSkupaj);
-            DateTime dateTime = new DateTime(2001, 12, 31);
+            DateTime dateTime = new(2001, 12, 31);
             List<Racun> racuni = new();
             UporabnikModel uporabnik = new("Janez", "Novak", dateTime, "janez.novak@test.com", racuni);
             var home = new homeModel
