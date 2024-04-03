@@ -20,7 +20,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="birthplace" class="control-label"></label>
-                <input asp-for="birthplace" class="form-control" />
+            @Html.DropDownList("Id", ViewBag.lokacije as SelectList, "Select location", new { @class = "form-control" })
+            @*<input asp-for="birthplace" class="form-control" />*@
                 <span asp-validation-for="birthplace" class="text-danger"></span>
             </div>
             <div class="form-group">

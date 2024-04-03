@@ -1,5 +1,6 @@
 ﻿using DSR_KAZAR_N1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DSR_KAZAR_N1.Controllers
 {
@@ -7,9 +8,8 @@ namespace DSR_KAZAR_N1.Controllers
     {
         public IActionResult Index()
         {
-
             //TempData.Clear();
-            Console.WriteLine("this happens");
+            ViewBag.lokacije = new SelectList(lokacije.GetLokacije(), "Id", "lokacija");
             return View();
 
         }
@@ -17,6 +17,9 @@ namespace DSR_KAZAR_N1.Controllers
         [HttpPost]
         public IActionResult Index(UporabnikModel model)
         {
+
+
+
             TempData["name"] = model.name;
             TempData["surname"] = model.surname;
             TempData["birthdate"] = model.birthdate;

@@ -5,23 +5,24 @@ namespace DSR_KAZAR_N1.Models
 {
     public class UporabnikModel
     {
-        [Required(ErrorMessage ="polje Ime mora biti izpolnjeno")]
-        [Display(Name="Ime")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Ime lahko vsebuje samo črke.")]
+        [Required(ErrorMessage = "polje Ime mora biti izpolnjeno")]
+        [Display(Name = "Ime")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Ime nesme vsebovati števil.")]
         public string name { get; set; }
 
         [Required(ErrorMessage = "polje Priimek mora biti izpolnjeno")]
-        public string surname{ get; set; }
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Priimek nesme vsebovati števil.")]
+        public string surname { get; set; }
 
         [Required(ErrorMessage = "polje Datum Rojstva mora biti izpolnjeno")]
-        [DateFormatValidation("dd.MM.yy", ErrorMessage = "Datum Rojstva mora biti v formatu dd.mm.yy")]
+        [DateRange]
         public DateTime birthdate { get; set; }
 
-        [KrajRojstvaValidation(ErrorMessage = "Izberite eno od veljavnih možnosti")]
         [Required(ErrorMessage = "polje KrajRojstva Rojstva mora biti izpolnjeno")]
         public string birthplace { get; set; }
 
-        [Required(ErrorMessage = "polje EMŠO mora biti izpolnjeno")]
+        [Required(ErrorMessage = "Polje EMŠO mora biti izpolnjeno")]
+        [EmsoValidation]
         public string emso { get; set; }
 
         [Required(ErrorMessage = "polje Naslov mora biti izpolnjeno")]
