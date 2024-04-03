@@ -2,74 +2,7 @@
 
 <div>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.surname)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.surname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.birthdate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.birthdate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.birthplace)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.birthplace)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.emso)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.emso)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.post)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.post)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.postnum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.postnum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.country)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.password)
-        </dd>
-    </dl>
+    @Html.DisplayForModel()
 </div>
 <div class="align-content-center">
     <label for="ocena" class="ocenaLable">Ocenite svojo izkušnjo ustvarjanja računa:</label>

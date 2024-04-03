@@ -13,20 +13,20 @@ namespace DSR_KAZAR_N1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(UporabnikModel model)
+        public IActionResult Index(page1Model model1, page2Model model2, page3Model model3)
         {
-            TempData["name"] = model.name;
-            TempData["surname"] = model.surname;
-            TempData["birthdate"] = model.birthdate;
-            TempData["birthplace"] = model.birthplace;
-            TempData["emso"] = model.emso;
-            TempData["address"] = model.address;
-            TempData["postnum"] = model.postnum;
-            TempData["post"] = model.post;
-            TempData["country"] = model.country;
-            TempData["email"] = model.email;
-            TempData["pass1"] = model.password;
-            TempData["pass2"] = model.password2;
+            TempData["name"] = model1.name;
+            TempData["surname"] = model1.surname;
+            TempData["birthdate"] = model1.birthdate;
+            TempData["birthplace"] = model1.birthplace;
+            TempData["emso"] = model1.emso;
+            TempData["address"] = model2.address;
+            TempData["postnum"] = model2.postnum;
+            TempData["post"] = model2.post;
+            TempData["country"] = model2.country;
+            TempData["email"] = model3.email;
+            TempData["pass1"] = model3.password;
+            TempData["pass2"] = model3.password2;
             TempData.Keep();
             ModelState.Remove("receipts");
             if (!ModelState.IsValid)
@@ -35,7 +35,7 @@ namespace DSR_KAZAR_N1.Controllers
                 {
                     Console.WriteLine($"{key}: {TempData[key]}");
                 }
-                return View(model);
+                return View();
             }
             return RedirectToAction("novUporabnik");
         }
