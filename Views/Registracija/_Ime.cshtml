@@ -1,16 +1,6 @@
 ﻿@model DSR_KAZAR_N1.Models.UporabnikModel
 @{
-    var lokacijeList = new List<string>
-    {
-        "Ljubljana",
-        "Maribor",
-        "Murska Sobota",
-        "Celje",
-        "Portorož",
-        "New York"
-    };
-
-    var lokacijeSelectList = new SelectList(lokacijeList);
+    var lokacijeSelectList = ViewBag.lokacije as SelectList;
 }
 
 <hr />
@@ -34,8 +24,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="birthplace" class="control-label"></label>
-            @Html.DropDownListFor(m => m.birthplace, lokacijeSelectList, "Select location", new { @class = "form-control" })  <span asp-validation-for="birthplace" class="text-danger"></span>
-            </div>
+            @Html.DropDownListFor(m => m.birthplace, new SelectList(new List<string> { "Ljubljana", "Maribor", "Murska Sobota", "Celje", "Portorož", "New York" }), "Select location", new { @class = "form-control" })
+        </div>
             <div class="form-group">
                 <label asp-for="emso" class="control-label"></label>
                 <input asp-for="emso" class="form-control" />

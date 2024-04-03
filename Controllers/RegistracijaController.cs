@@ -17,9 +17,6 @@ namespace DSR_KAZAR_N1.Controllers
         [HttpPost]
         public IActionResult Index(UporabnikModel model)
         {
-
-
-
             TempData["name"] = model.name;
             TempData["surname"] = model.surname;
             TempData["birthdate"] = model.birthdate;
