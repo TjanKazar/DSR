@@ -18,7 +18,7 @@ namespace DSR_KAZAR_N1.Models
         [DateRange]
         public DateTime birthdate { get; set; }
 
-        [Required(ErrorMessage = "polje KrajRojstva Rojstva mora biti izpolnjeno")]
+        [Required(ErrorMessage = "polje Kraj Rojstva Rojstva mora biti izpolnjeno")]
         public string birthplace { get; set; }
 
         [Required(ErrorMessage = "Polje EMŠO mora biti izpolnjeno")]

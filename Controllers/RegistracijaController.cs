@@ -51,7 +51,7 @@ namespace DSR_KAZAR_N1.Controllers
     (string?)TempData.Peek("name") ?? string.Empty,
     (string?)TempData.Peek("surname") ?? string.Empty,
     (DateTime?)TempData.Peek("birthdate") ?? DateTime.MinValue,
-    (string?)TempData.Peek("birthplace") ?? string.Empty,
+    (string?)TempData.Peek("birthplace").ToString() ?? string.Empty,
     (string?)TempData.Peek("emso") ?? string.Empty,
     (string?)TempData.Peek("address") ?? string.Empty,
     (string?)TempData.Peek("post") ?? string.Empty,
