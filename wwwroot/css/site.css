@@ -31,7 +31,11 @@ body {
     align-content: baseline;
 }
 #reg{
-    justify-content: right;
+    margin-left: auto;
+    margin-right: 2rem;
+}
+#home {
+    margin-left: 2rem;
 }
 
 .slider-container {
