@@ -8,10 +8,8 @@ namespace DSR_KAZAR_N1.Controllers
     {
         public IActionResult Index()
         {
-            //TempData.Clear();
-            ViewBag.lokacije = new SelectList(lokacije.GetLokacije(), "Id", "lokacija");
+            TempData.Clear();
             return View();
-
         }
 
         [HttpPost]
