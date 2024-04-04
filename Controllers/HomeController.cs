@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Nest;
 using System.Diagnostics;
 using System.Security.Cryptography.Xml;
+using System.Text.Json;
+using System.Web.Helpers;
 
 namespace DSR_KAZAR_N1.Controllers
 {
@@ -33,26 +35,8 @@ namespace DSR_KAZAR_N1.Controllers
             return RedirectToAction("uporabnik", model);
         }
         [HttpPost]
-        public IActionResult slikaPost(Slika model)
-        {
-			TempData["ime"] = model.ime;
-			TempData["cena"] = model.cena;
-            TempData["letoIzdaje"] = model.letoIzdaje;
-			TempData["jeUnikat"] = model.jeUnikat;
-            TempData.Keep();
-
-            return RedirectToAction("slika", model);
-        }
-        [HttpPost]
-        public IActionResult racunPost(Racun model)
-        {
-            TempData["datumIzdaje"] = model.datumIzdaje;
-            TempData["cenaSkupaj"] = model.cenaSkupaj;
-            TempData.Keep();
-
-            return RedirectToAction("racun", model);
-        }
-
+       
+        
         public IActionResult uporabnik()
 		{
 			Uporabnik uporabnik = new(
@@ -64,25 +48,32 @@ namespace DSR_KAZAR_N1.Controllers
             return View(uporabnik);
 		}
 
+        public IActionResult slikaPost(Slika model)
+        {
+            TempData["Slika"] = JsonSerializer.Serialize(model);
+            TempData.Keep();
+
+            return RedirectToAction("slika");
+        }
         public IActionResult slika()
         {
-            Slika slika = new Slika(
-                TempData["ime"] as string ?? string.Empty,
-                (double)(TempData["cena"] ?? 0),
-                (int)(TempData["letoIzdaje"] ?? 0),
-                (bool)(TempData["jeUnikat"] ?? false)
-            );
+            Slika slika = JsonSerializer.Deserialize<Slika>((string)TempData.Peek("Slika"));
 
             return View(slika);
         }
 
+        [HttpPost]
+        public IActionResult racunPost(Racun model)
+        {
+            TempData["Racun"] = JsonSerializer.Serialize(model);
+            TempData.Keep();
 
+            return RedirectToAction("racun");
+        }
         public IActionResult racun()
         {
-            DateTime datumIzdaje = (DateTime)(TempData["datumIzdaje"] ?? DateTime.MinValue);
-            double cenaSkupaj = (double)(TempData["cenaSkupaj"] ?? 0);
 
-            Racun racun = new Racun(datumIzdaje, cenaSkupaj);
+            Racun racun = JsonSerializer.Deserialize<Racun>((string)TempData.Peek("Racun"));
 
             return View("racun", racun);
         }

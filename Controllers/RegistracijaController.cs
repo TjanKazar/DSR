@@ -31,10 +31,6 @@ namespace DSR_KAZAR_N1.Controllers
             ModelState.Remove("receipts");
             if (!ModelState.IsValid)
             {
-                foreach (var key in TempData.Keys)
-                {
-                    Console.WriteLine($"{key}: {TempData[key]}");
-                }
                 return View();
             }
             return RedirectToAction("novUporabnik");
