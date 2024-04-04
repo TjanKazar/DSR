@@ -1,25 +1,10 @@
-﻿
-<h2>@Model.Slika.ime</h2>
+﻿@model DSR_KAZAR_N1.Models.Slika
 
-<div id="accordion">
-    <h3>Ime slike</h3>
-    <div>@Model.Slika.ime</div>
+@using (Html.BeginForm("slikaPost", "Home", FormMethod.Post))
+{
+    @Html.EditorForModel()
 
-    <h3>Cena slike</h3>
-    <div>@Model.Slika.cena eur</div>
-
-    <h3>Leto izdaje</h3>
-    <div>@Model.Slika.letoIzdaje</div>
-
-    <h3>Ali je slika unikat?</h3>
-    <div>
-        @if (Model.Slika.jeUnikat)
-        {
-            <p>Da</p>
-        }
-        else
-        {
-            <p>Ne</p>
-        }
-    </div>
+<div class="form-group">
+    <input type="submit" value="Dodaj sliko" class="btn btn-primary" />
 </div>
+}

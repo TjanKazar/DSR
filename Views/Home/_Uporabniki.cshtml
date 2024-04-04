@@ -1,3 +1,9 @@
-﻿<h2>@Model.Uporabnik.name @Model.Uporabnik.surname</h2>
-<p>Datum rojstva: @Model.Uporabnik.birthdate.Day @Model.Uporabnik.birthdate.Month @Model.Uporabnik.birthdate.Year</p>
-<p>Kontakt: @Model.Uporabnik.email</p>
+﻿@model DSR_KAZAR_N1.Models.Uporabnik
+@using (Html.BeginForm("uporabnikPost", "Home", FormMethod.Post))
+{
+@Html.EditorForModel()
+
+<div class="form-group">
+    <input type="submit" value="Dodaj Uporabnika" class="btn btn-primary" />
+</div>
+}

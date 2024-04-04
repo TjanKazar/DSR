@@ -1,16 +1,9 @@
-﻿
-<p>Datum izdaje: @Model.Racun.datumIzdaje</p>
-<p>Nakup:</p>
-@if (Model.Racun.nakup.Count != 0)
-{
-    @foreach (SlikaModel s in Model.Racun.nakup)
-    {
-        <p>@s.ime</p>
-    }
-}
-else
-{
-    <p>V računu ni slike</p>
-}
+﻿@model DSR_KAZAR_N1.Models.Racun
 
-<p>Skupna cena: @Model.Racun.cenaSkupaj</p>
+@using (Html.BeginForm("racunPost", "Home", FormMethod.Post))
+{
+@Html.EditorForModel()
+<div class="form-group">
+    <input type="submit" value="Dodaj Racun" class="btn btn-primary" />
+</div>
+}

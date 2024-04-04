@@ -2,11 +2,11 @@
 {
     public class homeModel
     {
-        public SlikaModel Slika { get; set; }
+        public Slika Slika { get; set; }
         public UporabnikModel Uporabnik { get; set; }
         public Racun Racun {get; set;}
 
-        public homeModel(SlikaModel slika, UporabnikModel uporabnik, Racun racun)
+        public homeModel(Slika slika, UporabnikModel uporabnik, Racun racun)
         {
             Slika = slika;
             Uporabnik = uporabnik;
