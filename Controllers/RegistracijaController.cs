@@ -11,7 +11,6 @@ namespace DSR_KAZAR_N1.Controllers
             TempData.Clear();
             return View();
         }
-
         [HttpPost]
         public IActionResult Index(page1Model model1, page2Model model2, page3Model model3)
         {
