@@ -1,6 +1,5 @@
 ﻿@model Int32
-<h3>Integer @Model.ToString()</h3>
+<h3>Integer: @Model</h3>
 <div id="slider">
-	<input type="range" min="0" max="2024" value="@Model.ToString()" disabled />
-
+    <input type="range" min="0" max="10000" value="@Model" onchange="updateValue(this.value)" step="1" disabled/>
 </div>
