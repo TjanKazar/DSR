@@ -14,10 +14,14 @@ $(document).ready(function () {
         });        
     });
     $(function () {
-        $("#datepicker").datepicker({
+        $('#date-picker').datepicker({
             dateFormat: 'dd.mm.yy'
         });
     });
-  
-    
+    $(function () {
+        $('#int-slider').on('input', function () {
+            var value = $(this).val();
+            $(this).next('#slider-value').text(value);
+        });
+    });
 });

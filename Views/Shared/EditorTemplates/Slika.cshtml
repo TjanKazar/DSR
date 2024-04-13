@@ -13,12 +13,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="cena" class="control-label"></label>
-                <input asp-for="cena" class="form-control" type="number" step="0.01" />
+                @Html.EditorFor(model => model.cena, "Int32", "cena")
+
                 <span asp-validation-for="cena" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="letoIzdaje" class="control-label"></label>
-                <input asp-for="letoIzdaje" class="form-control" />
+                @Html.EditorFor(model => model.letoIzdaje, "Int32", "letoIzdaje")
+
                 <span asp-validation-for="letoIzdaje" class="text-danger"></span>
             </div>
             <div class="form-group form-check">

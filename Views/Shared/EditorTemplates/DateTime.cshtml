@@ -1,2 +1,10 @@
 ﻿@model DateTime?
-<input type="date" value="@Model?.ToString("dd.MM.yyyy")" />
+
+@if (Model != null)
+{
+    @Html.TextBox("", Model.Value.ToString("dd.MM.yyyy"), new { @id = "date-picker", autocomplete="off" })
+}
+else
+{
+    @Html.TextBox("", "", new { @id = "date-picker", autocomplete = "off" })
+}

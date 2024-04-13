@@ -1,5 +1,12 @@
-﻿@model Int32
-<h3>Integer: @Model</h3>
-<div id="slider">
-    <input type="range" min="0" max="10000" value="@Model" onchange="updateValue(this.value)" step="1" />
-</div>
+﻿@model int?
+
+@if (Model != null)
+{
+    @Html.TextBoxFor(m => m, new { type = "range", id = "int-slider", min = 0, max = 9999, step = 1 })
+    <span id="slider-value">@Model</span>
+}
+else
+{
+    @Html.TextBoxFor(m => m, new { type = "range", id = "int-slider", min = 0, max = 9999, step = 1, value = 0 })
+    <span id="slider-value">0</span>
+}
