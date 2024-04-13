@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class UporabnikModel
 {
+    [Key]
+    public int Id { get; set; }
     [Required(ErrorMessage = "polje Ime mora biti izpolnjeno")]
     [Display(Name = "Ime")]
     [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Ime nesme vsebovati števil.")]

@@ -1,7 +1,6 @@
 ﻿using DSR_KAZAR_N1.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 public class dbContext : DbContext
@@ -11,15 +10,15 @@ public class dbContext : DbContext
     public DbSet<Slika> Slika { get; set; }
     public DbSet<Racun> Racun { get; set; }
 
-
-    public string DbPath { get; }
-
-    public dbContext()
+    public dbContext(DbContextOptions<dbContext> options) : base(options)
     {
-        var projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-        DbPath = Path.Combine(projectDirectory, "uporabnik.db");
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<UporabnikModel>().ToTable("UporabnikModel");
+        modelBuilder.Entity<UporabnikZGesli>().ToTable("UporabnikZGesli");
+        modelBuilder.Entity<Slika>().ToTable("Slika");
+        modelBuilder.Entity<Racun>().ToTable("Racun");
+    }
 }
