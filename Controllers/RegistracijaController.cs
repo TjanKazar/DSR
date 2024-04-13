@@ -38,7 +38,7 @@ namespace DSR_KAZAR_N1.Controllers
         public IActionResult novUporabnik()
         {
             Console.WriteLine(TempData.Peek("postnum"));
-            UporabnikModel novUporabnik = new(
+            UporabnikZGesli novUporabnik = new(
     (string?)TempData.Peek("name") ?? string.Empty,
     (string?)TempData.Peek("surname") ?? string.Empty,
     (DateTime?)TempData.Peek("birthdate") ?? DateTime.MinValue,

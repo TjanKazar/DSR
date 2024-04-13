@@ -19,7 +19,7 @@ $(document).ready(function () {
         });
     });
     $(function () {
-        $('#int-slider').on('input', function () {
+        $('#slider').on('input', function () {
             var value = $(this).val();
             $(this).next('#slider-value').text(value);
         });

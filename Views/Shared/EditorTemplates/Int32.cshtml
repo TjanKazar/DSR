@@ -2,11 +2,11 @@
 
 @if (Model != null)
 {
-    @Html.TextBoxFor(m => m, new { type = "range", id = "int-slider", min = 0, max = 9999, step = 1 })
+    @Html.TextBoxFor(m => m, new { type = "range", id = "slider", min = 0, max = 9999, step = 1 })
     <span id="slider-value">@Model</span>
 }
 else
 {
-    @Html.TextBoxFor(m => m, new { type = "range", id = "int-slider", min = 0, max = 9999, step = 1, value = 0 })
+    @Html.TextBoxFor(m => m, new { type = "range", id = "slider", min = 0, max = 9999, step = 1, value = 0 })
     <span id="slider-value">0</span>
 }

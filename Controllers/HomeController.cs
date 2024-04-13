@@ -24,28 +24,19 @@ namespace DSR_KAZAR_N1.Controllers
 		}
 
 		[HttpPost]
-        public IActionResult uporabnikPost(Uporabnik model)
+        public IActionResult uporabnikPost(UporabnikModel model)
         {
-			TempData["name"] = model.name;
-			TempData["surname"] = model.surname;
-			TempData["birthdate"] = model.birthdate;
-			TempData["email"] = model.email;
+			TempData["Uporabnik"] = JsonSerializer.Serialize(model);
             TempData.Keep();
 
-            return RedirectToAction("uporabnik", model);
+            return RedirectToAction("uporabnik");
         }
-        [HttpPost]
-       
-        
+     
         public IActionResult uporabnik()
 		{
-			Uporabnik uporabnik = new(
-				(string?)TempData.Peek("name") ?? string.Empty,
-	(string?)TempData.Peek("surname") ?? string.Empty,
-	(DateTime?)TempData.Peek("birthdate") ?? DateTime.MinValue,
-	(string?)TempData.Peek("email") ?? string.Empty);
+            UporabnikModel Uporabnik = JsonSerializer.Deserialize<UporabnikModel>((string)TempData.Peek("Uporabnik"));
 
-            return View(uporabnik);
+            return View(Uporabnik);
 		}
 
         public IActionResult slikaPost(Slika model)
@@ -77,12 +68,5 @@ namespace DSR_KAZAR_N1.Controllers
 
             return View("racun", racun);
         }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-		}
 	}
 }
