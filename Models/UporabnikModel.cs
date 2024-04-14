@@ -53,7 +53,7 @@ public class UporabnikModel
         this.birthdate = birthdate;
         this.email = email;
     }
-
+    //HOW DO I chose constuctor for display model
     public UporabnikModel(string name, string surname, DateTime birthdate, string birthplace, string emso, string address, string post, int postnum, string country, string email)
     {
         this.name = name;

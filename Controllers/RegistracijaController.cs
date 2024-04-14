@@ -38,8 +38,7 @@ namespace DSR_KAZAR_N1.Controllers
         public IActionResult novUporabnik()
         {
             Console.WriteLine(TempData.Peek("postnum"));
-            UporabnikZGesli novUporabnik = new(
-    (string?)TempData.Peek("name") ?? string.Empty,
+            UporabnikModel Uporabnik = new((string?)TempData.Peek("name") ?? string.Empty,
     (string?)TempData.Peek("surname") ?? string.Empty,
     (DateTime?)TempData.Peek("birthdate") ?? DateTime.MinValue,
     (string?)TempData.Peek("birthplace") ?? string.Empty,
@@ -48,16 +47,13 @@ namespace DSR_KAZAR_N1.Controllers
     (string?)TempData.Peek("post") ?? string.Empty,
     (int?)TempData.Peek("postnum") ?? 0,
     (string?)TempData.Peek("country") ?? string.Empty,
-    (string?)TempData.Peek("email") ?? string.Empty,
-    (string?)TempData.Peek("pass1") ?? string.Empty,
-        (string?)TempData.Peek("pass2") ?? string.Empty
-
-);
+    (string?)TempData.Peek("email") ?? string.Empty);
+           
             if (TempData.Peek("name") == null || TempData.Peek("country") == null || TempData.Peek("email") == null)
             {
                 return RedirectToAction("Index");
             }
-            return View(novUporabnik);
+            return View(Uporabnik);
         }
     }
 }

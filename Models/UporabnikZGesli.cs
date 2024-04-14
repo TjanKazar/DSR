@@ -1,8 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace DSR_KAZAR_N1.Models
 {
-    public class UporabnikZGesli : UporabnikModel
+    public class UporabnikZGesli
     {
+        [Key]
+        public int Id { get; set; }
+        public UporabnikModel uporabnik {get; set;}
+
         [Required(ErrorMessage = "polje Geslo mora biti izpolnjeno")]
         public string password { get; set; }
 
@@ -11,8 +15,24 @@ namespace DSR_KAZAR_N1.Models
         public string password2 { get; set; }
 
         public UporabnikZGesli(string name, string surname, DateTime birthdate, string birthplace, string emso, string address, string post, int postnum, string country, string email, string password, string password2)
-            : base(name, surname, birthdate, birthplace, emso, address, post, postnum, country, email)
         {
+            uporabnik.name = name;
+            uporabnik.surname = surname;
+            uporabnik.birthdate = birthdate;
+            uporabnik.birthplace = birthplace;
+            uporabnik.emso = emso;
+            uporabnik.address = address;
+            uporabnik.post = post;
+            uporabnik.postnum = postnum;
+            uporabnik.country = country;
+            uporabnik.email = email;
+            this.password = password;
+            this.password2 = password2;
+        }
+
+        public UporabnikZGesli(UporabnikModel uporabnik, string password, string password2)
+        {
+            this.uporabnik = uporabnik;
             this.password = password;
             this.password2 = password2;
         }
