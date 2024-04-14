@@ -17,7 +17,10 @@ public class dbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<UporabnikModel>().ToTable("UporabnikModel");
-        modelBuilder.Entity<UporabnikZGesli>().ToTable("UporabnikZGesli");
+        modelBuilder.Entity<UporabnikZGesli>()
+            .HasOne(uzg => uzg.uporabnik)
+            .WithMany()
+            .HasForeignKey(uzg => uzg.UporabnikModelId);
         modelBuilder.Entity<Slika>().ToTable("Slika");
         modelBuilder.Entity<Racun>().ToTable("Racun");
     }

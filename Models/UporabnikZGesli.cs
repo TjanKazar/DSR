@@ -1,10 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace DSR_KAZAR_N1.Models
 {
     public class UporabnikZGesli
     {
         [Key]
         public int Id { get; set; }
+
+        public int UporabnikModelId { get; set; }
+
+        [ForeignKey("UporabnikModelId")]
         public UporabnikModel uporabnik {get; set;}
 
         [Required(ErrorMessage = "polje Geslo mora biti izpolnjeno")]
@@ -33,6 +38,13 @@ namespace DSR_KAZAR_N1.Models
         public UporabnikZGesli(UporabnikModel uporabnik, string password, string password2)
         {
             this.uporabnik = uporabnik;
+            this.password = password;
+            this.password2 = password2;
+        }
+
+        public UporabnikZGesli(int uporabnikModelId, string password, string password2)
+        {
+            UporabnikModelId = uporabnikModelId;
             this.password = password;
             this.password2 = password2;
         }
