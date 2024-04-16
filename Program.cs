@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<dbContext>(options =>
 {
     // Configure DbContext to use SQLite
-    options.UseSqlite("Data Source=C:\\Users\\kazar\\source\\repos\\DSR\\Data\\dsr.db");
+    options.UseSqlite("Data Source=C:\\fax frfr\\2.letnik\\DSR\\Naloga1\\DSR_KAZAR_N1\\Data\\dsr.db");
 });
 
 var app = builder.Build();

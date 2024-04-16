@@ -1,0 +1,42 @@
+﻿@model DSR_KAZAR_N1.Models.Slika
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Slika</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cena)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cena)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.letoIzdaje)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.letoIzdaje)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.jeUnikat)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.jeUnikat)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
