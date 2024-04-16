@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 namespace DSR_KAZAR_N1.Models
 {
+    [NotMapped]
     public class UporabnikZGesli
     {
         [Key]
