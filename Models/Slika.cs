@@ -14,7 +14,7 @@ namespace DSR_KAZAR_N1.Models
         public int letoIzdaje { get; set; }
         [Required]
         public bool jeUnikat { get; set; }
-
+        [Required]
         public Racun? racun { get; set; }
         public Slika(string ime, double cena, int letoIzdaje, bool jeUnikat)
         {

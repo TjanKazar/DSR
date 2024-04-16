@@ -52,7 +52,7 @@ namespace DSR_KAZAR_N1.Migrations
                     b.Property<int>("letoIzdaje")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("racunId")
+                    b.Property<int>("racunId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -139,7 +139,9 @@ namespace DSR_KAZAR_N1.Migrations
                 {
                     b.HasOne("DSR_KAZAR_N1.Models.Racun", "racun")
                         .WithMany()
-                        .HasForeignKey("racunId");
+                        .HasForeignKey("racunId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("racun");
                 });
