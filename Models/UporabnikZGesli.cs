@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace DSR_KAZAR_N1.Models
 {
-    [NotMapped]
-    public class UporabnikZGesli
+    public class UporabnikZGesli : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
 
         public int UporabnikModelId { get; set; }
 
