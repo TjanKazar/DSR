@@ -39,6 +39,7 @@ namespace DSR_KAZAR_N1.Controllers
             return View(Uporabnik);
 		}
 
+        [HttpPost]
         public IActionResult slikaPost(Slika model)
         {
             TempData["Slika"] = JsonSerializer.Serialize(model);

@@ -1,29 +1,7 @@
 ﻿@model DSR_KAZAR_N1.Models.Racun
 
-@{
-    ViewData["Title"] = "Details";
-}
-
-<h1>Details</h1>
-
-<div>
-    <h4>Racun</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.datumIzdaje)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.datumIzdaje)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.cenaSkupaj)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.cenaSkupaj)
-        </dd>
-    </dl>
-</div>
+<h2>Račun :</h2>
+@Html.DisplayForModel()
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
