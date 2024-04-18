@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DSR_KAZAR_N1.dbContexts;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace DSR_KAZAR_N1.Models
 {
     public class UporabnikZGesli : IdentityUser
     {
+        
+
         public int UporabnikModelId { get; set; }
 
         [ForeignKey("UporabnikModelId")]
@@ -19,16 +22,7 @@ namespace DSR_KAZAR_N1.Models
 
         public UporabnikZGesli(string name, string surname, DateTime birthdate, string birthplace, string emso, string address, string post, int postnum, string country, string email, string password, string password2)
         {
-            uporabnik.name = name;
-            uporabnik.surname = surname;
-            uporabnik.birthdate = birthdate;
-            uporabnik.birthplace = birthplace;
-            uporabnik.emso = emso;
-            uporabnik.address = address;
-            uporabnik.post = post;
-            uporabnik.postnum = postnum;
-            uporabnik.country = country;
-            uporabnik.email = email;
+            uporabnik = new UporabnikModel(name, surname, birthdate, birthplace, emso, address, post, postnum, country, email);
             this.password = password;
             this.password2 = password2;
         }
