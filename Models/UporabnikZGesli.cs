@@ -5,7 +5,6 @@ namespace DSR_KAZAR_N1.Models
 {
     public class UporabnikZGesli : IdentityUser
     {
-
         public int UporabnikModelId { get; set; }
 
         [ForeignKey("UporabnikModelId")]
