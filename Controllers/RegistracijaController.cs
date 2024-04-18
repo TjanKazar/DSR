@@ -1,10 +1,7 @@
-﻿using DSR_KAZAR_N1.dbContexts;
-using DSR_KAZAR_N1.Models;
+﻿using DSR_KAZAR_N1.Models;
 using DSR_KAZAR_N1.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using NuGet.Protocol;
 using System.Text.Json;
 
 namespace DSR_KAZAR_N1.Controllers
@@ -14,19 +11,19 @@ namespace DSR_KAZAR_N1.Controllers
         private readonly SignInManager<UporabnikZGesli> _signInManager;
         private readonly UserManager<UporabnikZGesli> _userManager;
 
-		public RegistracijaController(SignInManager<UporabnikZGesli> signInManager, UserManager<UporabnikZGesli> userManager)
-		{
-			_signInManager = signInManager;
+        public RegistracijaController(SignInManager<UporabnikZGesli> signInManager, UserManager<UporabnikZGesli> userManager)
+        {
+            _signInManager = signInManager;
             _userManager = userManager;
-		}
+        }
 
-		public IActionResult Login()
+        public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
-		public async Task<IActionResult> Login(LoginModel model)
-		{
+        public async Task<IActionResult> Login(LoginModel model)
+        {
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Name, model.Password, false, false);
@@ -36,10 +33,10 @@ namespace DSR_KAZAR_N1.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Uporabnkško ime in geslo se ne ujemata");
-				return View(model);
-			}
-			return View(model);
-		}
+                return View(model);
+            }
+            return View(model);
+        }
         [HttpPost]
 
         public async Task<IActionResult> Logout()
@@ -48,7 +45,7 @@ namespace DSR_KAZAR_N1.Controllers
             return RedirectToAction(nameof(HomeController.Index));
         }
 
-       
+
 
         public IActionResult Index()
         {
@@ -72,25 +69,30 @@ namespace DSR_KAZAR_N1.Controllers
             model3.password2
             );
 
-            User.UserName = model1.name + "" + model1.surname;
-            User.Email = model3.email;
-            _userManager.AddToRoleAsync(User,"User");
-            var result = await _userManager.CreateAsync(User, model3.password);
-
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                await _signInManager.SignInAsync(User, false);
-                await Console.Out.WriteLineAsync("SOMETHING HAPPENED");
+                User.UserName = model1.name + "" + model1.surname;
+                User.Email = model3.email;
+                _userManager.AddToRoleAsync(User, "User");
+                var result = await _userManager.CreateAsync(User, model3.password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(User, false);
+                }
+                else
+
+
+                    TempData["User"] = JsonSerializer.Serialize(User);
+                TempData.Keep();
+
+
+
+                return RedirectToAction("novUporabnik");
+
             }
             else
-
-
-            TempData["User"] = JsonSerializer.Serialize(User);
-            TempData.Keep();
-
-
-          
-                return View(User);
+                return RedirectToAction();
 
         }
 

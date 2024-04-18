@@ -25,10 +25,8 @@ namespace DSR_KAZAR_N1.Controllers
 		{
             if (!User.IsInRole("User") && !User.IsInRole("Admin"))
             {
-                Console.WriteLine("IF happes");
                 return RedirectToAction("Index", "Registracija");
             }
-            Console.WriteLine("hello");
             return View();
 		}
 

@@ -1,4 +1,10 @@
-﻿﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using DSR_KAZAR_N1.Models
+
+@inject SignInManager<UporabnikZGesli> SignInManager
+@inject UserManager<UporabnikZGesli> UserManager
+
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +33,12 @@
                 <li class="nav-item">
                     <a class="nav-link text-primary flex-grow-3" asp-area="" asp-controller="UporabnikModels" asp-action="">Uporabnik</a>
                 </li>
+                @if (User.IsInRole("Admin"))
+                {
+                <li class="nav-item">
+                    <a class="nav-link text-primary flex-grow-3" asp-area="" asp-controller="UporabnikZGesli" asp-action="">Uporabnik-Admin</a>
+                </li>
+                }
             </ul>
             <partial name="_LoginPartial"/>
 
