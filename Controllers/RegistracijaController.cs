@@ -4,6 +4,7 @@ using DSR_KAZAR_N1.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Protocol;
 using System.Text.Json;
 
 namespace DSR_KAZAR_N1.Controllers
@@ -13,7 +14,7 @@ namespace DSR_KAZAR_N1.Controllers
         private readonly SignInManager<UporabnikZGesli> _signInManager;
         private readonly UserManager<UporabnikZGesli> _userManager;
 
-		public RegistracijaController(ApplicationDbContext context, SignInManager<UporabnikZGesli> signInManager, UserManager<UporabnikZGesli> userManager)
+		public RegistracijaController(SignInManager<UporabnikZGesli> signInManager, UserManager<UporabnikZGesli> userManager)
 		{
 			_signInManager = signInManager;
             _userManager = userManager;
@@ -72,7 +73,8 @@ namespace DSR_KAZAR_N1.Controllers
             );
 
             User.UserName = model1.name + "" + model1.surname;
-            //await _userManager.AddToRoleAsync(User,"User");
+            User.Email = model3.email;
+            _userManager.AddToRoleAsync(User,"User");
             var result = await _userManager.CreateAsync(User, model3.password);
 
             if (result.Succeeded)
@@ -88,21 +90,17 @@ namespace DSR_KAZAR_N1.Controllers
 
 
           
-                return View();
+                return View(User);
 
         }
 
-        public IActionResult novUporabnik()
+        public IActionResult novUporabnik(UporabnikZGesli user)
         {
-            Console.WriteLine(TempData.Peek("postnum"));
-           
-            if (TempData.Peek("User") == null)
+            if (User.IsInRole("User") || User.IsInRole("Admin"))
             {
-                return RedirectToAction("Index");
+                return View(user);
             }
-            UporabnikZGesli User = JsonSerializer.Deserialize<UporabnikZGesli>(TempData["User"] as string);
-
-            return View(User);
+            return RedirectToAction("Index");
         }
     }
 }
