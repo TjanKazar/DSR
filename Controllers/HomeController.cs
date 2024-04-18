@@ -5,11 +5,15 @@ using System.Diagnostics;
 using System.Security.Cryptography.Xml;
 using System.Text.Json;
 using System.Web.Helpers;
+using System.Web.Mvc;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 
 namespace DSR_KAZAR_N1.Controllers
 {
-	public class HomeController : Controller
-	{
+
+    [Authorize]
+	public class HomeController : Microsoft.AspNetCore.Mvc.Controller
+    {
 		private readonly ILogger<HomeController> _logger;
 
 		public HomeController(ILogger<HomeController> logger)
@@ -19,8 +23,13 @@ namespace DSR_KAZAR_N1.Controllers
 
 		public IActionResult Index()
 		{
-            TempData.Clear();
-			return View();
+            if (!User.IsInRole("User") && !User.IsInRole("Admin"))
+            {
+                Console.WriteLine("IF happes");
+                return RedirectToAction("Index", "Registracija");
+            }
+            Console.WriteLine("hello");
+            return View();
 		}
 
 		[HttpPost]

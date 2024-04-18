@@ -20,7 +20,11 @@ namespace DSR_KAZAR_N1.Controllers
         // GET: UporabnikModels
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Uporabnik.ToListAsync());
+            if (User.IsInRole("User") || User.IsInRole("Admin"))
+            {
+                return View(await _context.Uporabnik.ToListAsync());
+            }
+            return RedirectToAction("Index", "Registracija");
         }
 
         // GET: UporabnikModels/Details/5

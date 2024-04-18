@@ -1,5 +1,7 @@
 ﻿using DSR_KAZAR_N1.dbContexts;
 using DSR_KAZAR_N1.Models;
+using DSR_KAZAR_N1.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Json;
@@ -8,16 +10,47 @@ namespace DSR_KAZAR_N1.Controllers
 {
     public class RegistracijaController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly SignInManager<UporabnikZGesli> _signInManager;
+        private readonly UserManager<UporabnikZGesli> _userManager;
 
-        public RegistracijaController(ApplicationDbContext context)
+		public RegistracijaController(ApplicationDbContext context, SignInManager<UporabnikZGesli> signInManager, UserManager<UporabnikZGesli> userManager)
+		{
+			_signInManager = signInManager;
+            _userManager = userManager;
+		}
+
+		public IActionResult Login()
         {
-            _context = context;
+            return View();
         }
+        [HttpPost]
+		public async Task<IActionResult> Login(LoginModel model)
+		{
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.Name, model.Password, false, false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", "Uporabnkško ime in geslo se ne ujemata");
+				return View(model);
+			}
+			return View(model);
+		}
+        [HttpPost]
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index));
+        }
+
+       
 
         public IActionResult Index()
         {
-            TempData.Clear();
             return View();
         }
         [HttpPost]
@@ -37,18 +70,26 @@ namespace DSR_KAZAR_N1.Controllers
             model3.password,
             model3.password2
             );
-            await _context.AddAsync(User);
-            await _context.SaveChangesAsync();
+
+            User.UserName = model1.name + "" + model1.surname;
+            //await _userManager.AddToRoleAsync(User,"User");
+            var result = await _userManager.CreateAsync(User, model3.password);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(User, false);
+                await Console.Out.WriteLineAsync("SOMETHING HAPPENED");
+            }
+            else
+
+
             TempData["User"] = JsonSerializer.Serialize(User);
             TempData.Keep();
 
 
-            if (!ModelState.IsValid)
-            {
+          
                 return View();
-            }
 
-            return RedirectToAction("novUporabnik");
         }
 
         public IActionResult novUporabnik()

@@ -21,7 +21,12 @@ namespace DSR_KAZAR_N1.Controllers
         // GET: Slikas
         public async Task<IActionResult> Index()
         {
+            if (User.IsInRole("User") || User.IsInRole("Admin"))
+            {
+                Console.WriteLine("IF happes");
             return View(await _context.Slika.ToListAsync());
+            }
+                return RedirectToAction("Index", "Registracija");
         }
 
         // GET: Slikas/Details/5

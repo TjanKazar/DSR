@@ -14,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+
 // Add DbContext to the service container
 builder.Services.AddDbContext<dbContext>(options =>
 {
@@ -38,9 +40,9 @@ builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
     options.Password.RequireDigit = true;
-    options.Password.RequireLowercase = true;
+    options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = true;
-    options.Password.RequireUppercase = true;
+    options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 
@@ -69,6 +71,50 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
+static async Task CreateRoles(IServiceProvider serviceProvider)
+{
+    using var scope = serviceProvider.CreateScope();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    string[] roleNames = { "Admin", "User" };
+
+    foreach (var roleName in roleNames)
+    {
+        var roleExists = await roleManager.RoleExistsAsync(roleName);
+
+        if (!roleExists)
+        {
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
+}
+
+static async Task SeedRolesToUsers(IServiceProvider serviceProvider)
+{
+    using var scope = serviceProvider.CreateScope();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<UporabnikZGesli>>();
+
+    var adminEmail = "tjan.kazar3@gmail.com";
+
+    var adminUser = await userManager.FindByEmailAsync(adminEmail);
+
+    if (adminUser != null && !await userManager.IsInRoleAsync(adminUser, "Admin"))
+    {
+        await userManager.AddToRoleAsync(adminUser, "Admin");
+    }
+
+    var allUsers = userManager.Users.ToList();
+
+    foreach (var user in allUsers)
+    {
+        if (!await userManager.IsInRoleAsync(user, "Admin"))
+        {
+            await userManager.AddToRoleAsync(user, "User");
+        }
+    }
+}
+CreateRoles(app.Services).Wait();
+SeedRolesToUsers(app.Services).Wait();
 // Initialize SQLitePCL
 SQLitePCL.Batteries.Init();
 

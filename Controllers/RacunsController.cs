@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DSR_KAZAR_N1.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DSR_KAZAR_N1.Models;
 
 namespace DSR_KAZAR_N1.Controllers
 {
@@ -21,7 +16,11 @@ namespace DSR_KAZAR_N1.Controllers
         // GET: Racuns
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Racun.ToListAsync());
+            if (User.IsInRole("User") || User.IsInRole("Admin"))
+            {
+                return View(await _context.Racun.ToListAsync());
+            }
+            return RedirectToAction("Index", "Registracija");
         }
 
         // GET: Racuns/Details/5

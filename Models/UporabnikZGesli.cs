@@ -6,16 +6,15 @@ namespace DSR_KAZAR_N1.Models
 {
     public class UporabnikZGesli : IdentityUser
     {
-        
-
         public int UporabnikModelId { get; set; }
 
         [ForeignKey("UporabnikModelId")]
         public UporabnikModel uporabnik {get; set;}
 
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "polje Geslo mora biti izpolnjeno")]
         public string password { get; set; }
-
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "polje Geslo mora biti izpolnjeno")]
         [Compare("password", ErrorMessage = "Gesli se ne ujemata")]
         public string password2 { get; set; }
