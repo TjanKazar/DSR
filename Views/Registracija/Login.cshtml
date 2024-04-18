@@ -4,7 +4,36 @@
 @{
 	ViewData["Title"] = "Login";
 }
+<script>
+	window.fbAsyncInit = function () {
+		FB.init({
+			appId: '1508539633210161',
+			xfbml: true,
+			version: 'v19.0'
+		});
+		FB.AppEvents.logPageView();
+	};
 
+	(function (d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) { return; }
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	FB.login(function (response) {
+		if (response.authResponse) {
+			console.log('Welcome!  Fetching your information.... ');
+			FB.api('/me', { fields: 'name, email' }, function (response) {
+				document.getElementById("profile").innerHTML = "Good to see you, " + response.name + ". i see your email address is " + response.email
+			});
+		} else {
+			<!--If you are not logged in, the login dialog will open for you to login asking for permission to get your public profile and email-- >
+	console.log('User cancelled login or did not fully authorize.'); }
+				});
+			};
+
+</script>
 <div class="row d-flex align-items-center justify-content-center">
 	<div class="col-md-3 card p-3">
 		<h2 class="text-center text-info">Login</h2>
@@ -25,6 +54,11 @@
 			<div class="col-8">
 				<a asp-action="" class="text-decoration-none float-start mt-2">Nimate še računa ? </a>
 			</div>
+				
+				<div id="id"></div>
+				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/sl_SI/sdk.js#xfbml=1&version=v19.0&appId=1508539633210161" nonce="fXzEak0h"></script>
+				<div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="true"></div>
+				<br/>
 			<div class="col-4">
 				<input type="submit" value="Login" class="btn btn-primary btn-sm float-end"/>
 			</div>
