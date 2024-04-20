@@ -20,13 +20,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<dbContext>(options =>
 {
     // Configure DbContext to use SQLite
-    options.UseSqlite("Data Source=C:\\fax frfr\\2.letnik\\DSR\\Naloga1\\DSR_KAZAR_N1\\Data\\dsr.db");
+    options.UseSqlite("Data Source=C:\\Users\\kazar\\Source\\Repos\\DSR\\Data\\dsr.db");
 });
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     // Configure DbContext to use SQLite
-    options.UseSqlite("Data Source=C:\\fax frfr\\2.letnik\\DSR\\Naloga1\\DSR_KAZAR_N1\\Data\\UserInfo.db");
+    options.UseSqlite("Data Source=C:\\Users\\kazar\\Source\\Repos\\DSR\\Data\\UserInfo.db");
 });
 
 builder.Services.AddIdentity<UporabnikZGesli, IdentityRole>(
