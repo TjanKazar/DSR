@@ -1,59 +1,109 @@
 ﻿using DSR_KAZAR_N1.Models;
+using DSR_KAZAR_N1.ViewModels;
+using Facebook;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.Json;
 
 namespace DSR_KAZAR_N1.Controllers
 {
-    public class RegistracijaController : Controller
-    {
-        public IActionResult Index()
-        {
-            TempData.Clear();
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Index(page1Model model1, page2Model model2, page3Model model3)
-        {
-            TempData["name"] = model1.name;
-            TempData["surname"] = model1.surname;
-            TempData["birthdate"] = model1.birthdate;
-            TempData["birthplace"] = model1.birthplace;
-            TempData["emso"] = model1.emso;
-            TempData["address"] = model2.address;
-            TempData["postnum"] = model2.postnum;
-            TempData["post"] = model2.post;
-            TempData["country"] = model2.country;
-            TempData["email"] = model3.email;
-            TempData["pass1"] = model3.password;
-            TempData["pass2"] = model3.password2;
-            TempData.Keep();
-            ModelState.Remove("receipts");
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            return RedirectToAction("novUporabnik");
-        }
+	public class RegistracijaController : Controller
+	{
+		private readonly SignInManager<UporabnikZGesli> _signInManager;
+		private readonly UserManager<UporabnikZGesli> _userManager;
 
-        public IActionResult novUporabnik()
-        {
-            Console.WriteLine(TempData.Peek("postnum"));
-            UporabnikModel Uporabnik = new((string?)TempData.Peek("name") ?? string.Empty,
-    (string?)TempData.Peek("surname") ?? string.Empty,
-    (DateTime?)TempData.Peek("birthdate") ?? DateTime.MinValue,
-    (string?)TempData.Peek("birthplace") ?? string.Empty,
-    (string?)TempData.Peek("emso") ?? string.Empty,
-    (string?)TempData.Peek("address") ?? string.Empty,
-    (string?)TempData.Peek("post") ?? string.Empty,
-    (int?)TempData.Peek("postnum") ?? 0,
-    (string?)TempData.Peek("country") ?? string.Empty,
-    (string?)TempData.Peek("email") ?? string.Empty);
-           
-            if (TempData.Peek("name") == null || TempData.Peek("country") == null || TempData.Peek("email") == null)
-            {
-                return RedirectToAction("Index");
-            }
-            return View(Uporabnik);
-        }
-    }
+		public RegistracijaController(SignInManager<UporabnikZGesli> signInManager, UserManager<UporabnikZGesli> userManager)
+		{
+			_signInManager = signInManager;
+			_userManager = userManager;
+		}
+
+		public IActionResult Login()
+		{
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> Login(LoginModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var result = await _signInManager.PasswordSignInAsync(model.Name, model.Password, false, false);
+
+				if (result.Succeeded)
+				{
+					return RedirectToAction("Index", "Home");
+				}
+				ModelState.AddModelError("", "Uporabnkško ime in geslo se ne ujemata");
+				return View(model);
+			}
+			return View(model);
+		}
+		[HttpPost]
+
+		public async Task<IActionResult> Logout()
+		{
+			await _signInManager.SignOutAsync();
+			return RedirectToAction(nameof(HomeController.Index));
+		}
+
+
+
+		public IActionResult Index()
+		{
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> Index(page1Model model1, page2Model model2, page3Model model3)
+		{
+			UporabnikZGesli User = new UporabnikZGesli(
+			model1.name,
+			model1.surname,
+			model1.birthdate,
+			model1.birthplace,
+			model1.emso,
+			model2.address,
+			model2.post,
+			model2.postnum,
+			model2.country,
+			model3.email,
+			model3.password,
+			model3.password2
+			);
+
+			if (ModelState.IsValid)
+			{
+				User.UserName = model1.name + "" + model1.surname;
+				User.Email = model3.email;
+				_userManager.AddToRoleAsync(User, "User");
+				var result = await _userManager.CreateAsync(User, model3.password);
+
+				if (result.Succeeded)
+				{
+					await _signInManager.SignInAsync(User, false);
+				}
+				else
+
+
+					TempData["User"] = JsonSerializer.Serialize(User);
+				TempData.Keep();
+
+
+
+				return RedirectToAction("novUporabnik");
+
+			}
+			else
+				return RedirectToAction();
+
+		}
+
+		public IActionResult novUporabnik(UporabnikZGesli user)
+		{
+			if (User.IsInRole("User") || User.IsInRole("Admin"))
+			{
+				return View(user);
+			}
+			return RedirectToAction("Index");
+		}
+	}
 }
