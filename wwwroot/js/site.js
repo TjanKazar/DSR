@@ -1,27 +1,21 @@
-﻿$(function () {
-    $("#accordion").accordion();
-});
+﻿
+
 
 function isValidPostNum(postnum) {
     return /^\d{4}$/.test(postnum);
 }
 
 $(document).ready(function () {
+    $("#accordion").accordion();
 
-    $(function () {
-        $(function () {
-            $("#tabs").tabs();
-        });        
+    $("#tabs").tabs();
+
+    $('#date-picker').datepicker({
+        dateFormat: 'dd.mm.yy'
     });
-    $(function () {
-        $('#date-picker').datepicker({
-            dateFormat: 'dd.mm.yy'
-        });
-    });
-    $(function () {
-        $('#slider').on('input', function () {
-            var value = $(this).val();
-            $(this).next('#slider-value').text(value);
-        });
+
+    $('#slider').on('input', function () {
+        var value = $(this).val();
+        $(this).next('#slider-value').text(value);
     });
 });

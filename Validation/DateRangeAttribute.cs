@@ -9,12 +9,10 @@ public class DateRangeAttribute : ValidationAttribute
         {
             if (date > new DateTime(1900, 1, 1) && date < DateTime.Today)
             {
-				Console.WriteLine("Nigga : " + value.ToString());
 				return true;
             }
             else
             {
-                Console.WriteLine("Nigga : "+ value.ToString());
                 ErrorMessage = "Datum mora biti večji od leta 1900 in manjši od današnjega dne.";
                 return false;
             }

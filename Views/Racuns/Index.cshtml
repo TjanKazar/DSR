@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DSR_KAZAR_N1.Models.Racun>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Računi</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.datumIzdaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cenaSkupaj)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.datumIzdaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cenaSkupaj)
+            </td>
+            <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
