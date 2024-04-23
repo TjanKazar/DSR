@@ -35,4 +35,8 @@
     <PackageReference Include="SQLitePCLRaw.core" Version="2.1.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DSR_api\DSR_api.csproj" />
+  </ItemGroup>
+
 </Project>
