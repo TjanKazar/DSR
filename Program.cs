@@ -20,13 +20,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<dbContext>(options =>
 {
     // Configure DbContext to use SQLite
-    options.UseSqlite("Data Source=C:\\Users\\kazar\\Source\\Repos\\DSR\\Data\\dsr.db");
+    options.UseSqlite($"Data Source={Path.Combine(Directory.GetCurrentDirectory(), "Data/dsr.db")}");
 });
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     // Configure DbContext to use SQLite
-    options.UseSqlite("Data Source=C:\\Users\\kazar\\Source\\Repos\\DSR\\Data\\UserInfo.db");
+    options.UseSqlite($"Data Source={Path.Combine(Directory.GetCurrentDirectory(), "Data/UserInfo.db")}");
 });
 
 builder.Services.AddIdentity<UporabnikZGesli, IdentityRole>(
